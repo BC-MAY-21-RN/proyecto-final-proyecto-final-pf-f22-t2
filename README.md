@@ -1,7 +1,7 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Nombre del proyecto
-Turistapp 
+TuristicApp
 
 ## Problematica que atiende
 No sabes a donde ir en tu mimsa region? bueno con esta app tendras informacion general sobre  los sitios turisticos y sus servicios.
