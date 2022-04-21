@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
-import {ToastAndroid} from 'react-native'; 
+import {ToastAndroid} from 'react-native';
+import { useEffect, useState } from 'react'; 
 
 export const signIn = (email, password) => {
     auth()
@@ -40,3 +41,22 @@ export const signOut = () => {
 };
 
 
+export const infoUser = () => {
+    const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); 
+    const onAuthStateChanged = async user => {
+      await setCurrentUser(user);
+      setIsLoading(false);
+    };
+    useEffect(() => {
+      const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+      return subscriber;
+    }, []);
+  
+    if (isLoading) {
+      return null;
+    }
+    
+    return currentUser
+}
+  
