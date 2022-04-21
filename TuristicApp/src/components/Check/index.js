@@ -1,20 +1,24 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import { styles } from './styles';
+import { MyText } from '../MyText';
 
 export const Check = (props) => {
-    const { value, onValueChange, text } =props;
+    const { value, onValueChange } =props;
   
     return (
         <View style={styles.containerCheck}>
             <CheckBox
-            
             value={value}
-            tintColors={{ true: '#5b6ef7', false: '#b6b7ba' }}
+            tintColors={{ true: '#f75f6a', false: '#b6b7ba' }}
             onValueChange={onValueChange}
             />
-            <Text>{text}</Text>
+            <MyText bold>
+                I agree to the 
+                <MyText color={'#f75f6a'}>Terms of Services</MyText> and 
+                <MyText color={'#f75f6a'}> Privacy Policy</MyText>
+            </MyText>
         </View>
     )
 }
