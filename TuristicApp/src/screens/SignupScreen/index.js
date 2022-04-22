@@ -1,24 +1,34 @@
 import React, {useState} from 'react';
-import { TouchableOpacity } from 'react-native';
 import { Button } from '../../components/MyButton';
 import { Logo } from '../../components/Logo';
 import { MyText } from '../../components/MyText';
 import { MyInput } from '../../components/MyInput';
-
 import { 
   ContainerCenter,
   ContainerLeft,
-  ContainerFooter
 } from '../../library/utils/styledGlobal'
 import { Check } from '../../components/Check';
 import { Footer } from '../../components/Footer';
+import { signIn, signUp } from '../../library/utils/auth'
 
 
 export const SignupScreen = () => {
   const [email, setEmail] = useState('')
-  const [passwrod, setPassword] = useState('')
+  const [password, setPassword] = useState('')
   const [terms, setTerms] = useState(false)
   const [isLoginScreen, setIsLoginScreen] = useState(false)
+  
+  const handleSingUp = () =>{
+    signUp(email, password);
+    console.log("hola", email, password)
+  }
+
+  const handleLogin = () => {
+    if (email != '' && password != '') {
+      signIn(email, password);
+    }
+    console.log("hola", email, password)
+  }
 
   return (
     <ContainerCenter>
@@ -29,14 +39,16 @@ export const SignupScreen = () => {
         <MyInput text={'Email'} placeholder={'Your email address'}
           onChangeText={value => setEmail(value)}
           value={email} disabled={email?true:false}
+          
         />
+        
         <MyInput text={'Password'}
           onChangeText={value => setPassword(value)}
-          value={passwrod} disabled={passwrod?true:false}
+          value={password} disabled={password?true:false}
         />
         {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>
-      <Button text={'Sign In'}/>
+      <Button onPress={isLoginScreen?handleLogin:handleSingUp} text={'Sign In'}/>
       <MyText bold size={'14px'}>Or</MyText>
       <Button icon text={'Sign In with Google'}/>
       <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
