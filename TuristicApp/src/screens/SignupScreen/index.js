@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
-import { TouchableOpacity } from 'react-native';
 import { Button } from '../../components/MyButton';
 import { Logo } from '../../components/Logo';
 import { MyText } from '../../components/MyText';
 import { MyInput } from '../../components/MyInput';
-
 import { 
   ContainerCenter,
   ContainerLeft,
-  ContainerFooter
 } from '../../library/utils/styledGlobal'
 import { Check } from '../../components/Check';
 import { Footer } from '../../components/Footer';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export const SignupScreen = () => {
@@ -22,10 +20,12 @@ export const SignupScreen = () => {
 
   return (
     <ContainerCenter>
-      <Logo color={'#f75f6a'}/>
+      <SafeAreaView>
+        <Logo color={'#f75f6a'}/>
+      </SafeAreaView>
       <ContainerLeft>
         <MyText color={'#4e4d57'} size={'30px'} bold>{isLoginScreen?'Sign In':'Sign Up'}</MyText>
-        {isLoginScreen&&<MyText bold>Welcome to Huila</MyText>}
+        {isLoginScreen && <MyText bold> Welcome to Huila </MyText>}
         <MyInput text={'Email'} placeholder={'Your email address'}
           onChangeText={value => setEmail(value)}
           value={email} disabled={email?true:false}
@@ -34,12 +34,14 @@ export const SignupScreen = () => {
           onChangeText={value => setPassword(value)}
           value={passwrod} disabled={passwrod?true:false}
         />
-        {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
+        {!isLoginScreen && <Check value={terms} onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>
       <Button text={'Sign In'}/>
       <MyText bold size={'14px'}>Or</MyText>
       <Button icon text={'Sign In with Google'}/>
-      <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
+      <SafeAreaView>
+        <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
+      </SafeAreaView>
     </ContainerCenter>
   );
 };
