@@ -11,7 +11,6 @@ import { Check } from '../../components/Check';
 import { Footer } from '../../components/Footer';
 import { signIn, signUp } from '../../library/utils/auth'
 
-
 export const SignupScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,28 +19,24 @@ export const SignupScreen = () => {
   
   const handleSingUp = () =>{
     signUp(email, password);
-    console.log("hola", email, password)
   }
 
   const handleLogin = () => {
     if (email != '' && password != '') {
       signIn(email, password);
     }
-    console.log("hola", email, password)
   }
 
   return (
     <ContainerCenter>
-      <Logo color={'#f75f6a'}/>
+      <Logo color={'#f75f6a'} size={130}/>
       <ContainerLeft>
         <MyText color={'#4e4d57'} size={'30px'} bold>{isLoginScreen?'Sign In':'Sign Up'}</MyText>
         {isLoginScreen&&<MyText bold>Welcome to Huila</MyText>}
         <MyInput text={'Email'} placeholder={'Your email address'}
           onChangeText={value => setEmail(value)}
           value={email} disabled={email?true:false}
-          
         />
-        
         <MyInput text={'Password'}
           onChangeText={value => setPassword(value)}
           value={password} disabled={password?true:false}
