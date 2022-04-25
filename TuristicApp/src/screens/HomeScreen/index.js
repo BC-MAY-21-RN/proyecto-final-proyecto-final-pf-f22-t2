@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { signOut } from '../../library/utils/auth';
+import { Places } from '../../components/Places';
 
 export const HomeScreen = ({navigation, props}) => {
   return (
@@ -11,6 +12,7 @@ export const HomeScreen = ({navigation, props}) => {
             size={25}
             color={'#4e4d57'}
             onPress={signOut}/>
+      <Places/>
     </View>
   );
 };
