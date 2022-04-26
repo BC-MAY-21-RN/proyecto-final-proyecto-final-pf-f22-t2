@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Drawer } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-paper';
+import styles from '../SideMenu/styles'
 
 const SideMenu = () => {
   const [active, setActive] = React.useState('');
