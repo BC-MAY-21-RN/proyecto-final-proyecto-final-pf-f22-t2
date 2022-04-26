@@ -1,65 +1,55 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Drawer } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Avatar } from 'react-native-paper';
 
-function Home() {
+const SideMenu = () => {
+  const [active, setActive] = React.useState('');
+
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
+    <SafeAreaView>
+    <Avatar.Image size={54} source={require('../../assets/avatar.png')} />
+    <Drawer.Section title="Johanna Guide">
+      <Drawer.Item
+        icon={"home"}
+        label="Home"
+        active={active === 'one'}
+        onPress={() => setActive('first')}
+      />
+      <Drawer.Item
+        icon={"map"}
+        label="Place"
+        active={active === 'two'}
+        onPress={() => setActive('second')}
+      />
+      <Drawer.Item
+        icon={"calendar"}
+        label="Events"
+        active={active === 'three'}
+        onPress={() => setActive('second')}
+      />
+      <Drawer.Item
+        icon={"apple"}
+        label="Food"
+        active={active === 'four'}
+        onPress={() => setActive('second')}
+      />
+      <Drawer.Item
+        icon={"heart"}
+        label="Rate"
+        active={active === 'five'}
+        onPress={() => setActive('second')}
+      />
+      <Drawer.Item
+        icon={"logout"}
+        label="Logout"
+        active={active === 'six'}
+        onPress={() => setActive('second')}
+      />
+    </Drawer.Section>
+    </SafeAreaView>
   );
-}
+};
 
-function Places() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Article Screen</Text>
-    </View>
-  );
-}
-
-function Events() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
-  );
-}
-
-function Food() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
-  );
-}
-
-function Rate() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Feed Screen</Text>
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator();
-
-function MyDrawer() {
-  return (
-    <Drawer.Navigator useLegacyImplementation>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Places" component={Places} />
-      <Drawer.Screen name="Events" component={Events} />
-      <Drawer.Screen name="Food" component={Food} />
-      <Drawer.Screen name="Rate" component={Rate} />
-    </Drawer.Navigator>
-  );
-}
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyDrawer />
-    </NavigationContainer>
-  );
-}
+export default SideMenu;
