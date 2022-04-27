@@ -12,17 +12,18 @@ const SideMenu = () => {
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>
-        <View>
-          <Avatar.Image size={54} source={require('../../assets/avatar.png')} />
+        <View style={styles.avatar}>
+          <Avatar.Image size={64} source={require('../../assets/avatar.png')} />
+        </View>
             <Drawer.Section title="Johanna Guide">
-              <View>
-              <Drawer.Item
-                icon={"home"}
-                label="Home"
-                active={active === 'one'}
-                onPress={() => setActive('first')}
-              />
-              <Avatar.Icon size={40} icon="chevron-right" backgroundColor="transparent" color="black" />
+              <View style={styles.homeIcon}>
+                <Drawer.Item
+                  icon={"home"}
+                  label="Home"
+                  active={active === 'one'}
+                  onPress={() => setActive('first')}
+                />
+                <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black" />
               </View>
               <Drawer.Item
                 icon={"map"}
@@ -55,7 +56,7 @@ const SideMenu = () => {
                 onPress={() => setActive('second')}
               />
             </Drawer.Section>
-        </View>
+        
       </SafeAreaView>
     </View>
   );
