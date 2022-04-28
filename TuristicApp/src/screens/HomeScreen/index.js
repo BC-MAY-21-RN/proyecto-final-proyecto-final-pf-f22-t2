@@ -10,8 +10,8 @@ export const HomeScreen = ({navigation, props}) => {
     <View>
       <MyText color={'#607d8b'} size={'30px'} bold>{'HOME'}</MyText>
       <Icon name="power-off" 
-            size={25}
-            color={'#4e4d57'}
+        size={25}
+        color={'#4e4d57'}
         onPress={signOut} />
       <ImageCarousel />
     </View>
