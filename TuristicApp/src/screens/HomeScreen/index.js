@@ -1,17 +1,14 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import { signOut } from '../../library/utils/auth';
 import { Places } from '../../components/Places';
+import HeaderBar from '../../components/Header-bar/index';
 
 export const HomeScreen = ({navigation, props}) => {
   return (
+    
     <View>
-      <Text>HomeScreen</Text>
-      <Icon name="power-off" 
-            size={25}
-            color={'#4e4d57'}
-            onPress={signOut}/>
+      
+      <HeaderBar title={"Home"} color={"white"}  style={{ backgroundColor: '#607d8b' }} />
       <Places/>
     </View>
   );
