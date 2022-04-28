@@ -2,17 +2,18 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { signOut } from '../../library/utils/auth';
-import { Places } from '../../components/Places';
+import { ImageCarousel } from '../../components/ImageCarousel';
+import { MyText } from '../../components/MyText';
 
 export const HomeScreen = ({navigation, props}) => {
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <MyText color={'#607d8b'} size={'30px'} bold>{'HOME'}</MyText>
       <Icon name="power-off" 
             size={25}
             color={'#4e4d57'}
-            onPress={signOut}/>
-      <Places/>
+        onPress={signOut} />
+      <ImageCarousel />
     </View>
   );
 };
