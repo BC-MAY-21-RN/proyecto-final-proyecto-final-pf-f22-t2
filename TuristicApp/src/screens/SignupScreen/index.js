@@ -10,6 +10,7 @@ import {
 import { Check } from '../../components/Check';
 import { Footer } from '../../components/Footer';
 import { signIn, signUp } from '../../library/utils/auth'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const SignupScreen = () => {
   const [email, setEmail] = useState('')
@@ -29,7 +30,9 @@ export const SignupScreen = () => {
 
   return (
     <ContainerCenter>
-      <Logo color={'#f75f6a'} size={130}/>
+      <SafeAreaView>
+        <Logo color={'#f75f6a'}/>
+      </SafeAreaView>
       <ContainerLeft>
         <MyText color={'#4e4d57'} size={'30px'} bold>{isLoginScreen?'Sign In':'Sign Up'}</MyText>
         {isLoginScreen&&<MyText bold>Welcome to Huila</MyText>}
