@@ -10,8 +10,6 @@ import {
 import { Check } from '../../components/Check';
 import { Footer } from '../../components/Footer';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SideMenu from '../../components/SideMenu';
-
 
 export const SignupScreen = () => {
   const [email, setEmail] = useState('')
@@ -21,9 +19,6 @@ export const SignupScreen = () => {
 
   return (
     <ContainerCenter>
-      <SafeAreaView>
-        <SideMenu/>
-      </SafeAreaView>
       <SafeAreaView>
         <Logo color={'#f75f6a'}/>
       </SafeAreaView>
