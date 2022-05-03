@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
     colors: {
         primary: '#f75f6a',
         secondary: 'green',
@@ -13,4 +13,29 @@ const theme = {
     }
 }
 
-export default theme;
+
+export const shadow = {
+    light: {
+      shadowColor: '#f75f6a',
+      shadowRadius: 6,
+      shadowOpacity: 0.7,
+      shadowOffset: {
+        width: -2,
+        height: 2,
+      },
+      elevation: 10,
+    },
+    dark: {
+      shadowColor: '',
+      shadowRadius: 6,
+      shadowOpacity: 0.7,
+      shadowOffset: {
+        width: -2,
+        height: 2,
+      },
+      elevation: 10,
+    },
+
+  
+  };
+
