@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
       },
       shadowOpacity: 0.9,
       shadowRadius: 8,
-      shadowColor: "#0061FF",
+      shadowColor: "red",
       elevation: 10,
     }
 })
