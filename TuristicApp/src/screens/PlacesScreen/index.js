@@ -6,7 +6,7 @@ import HeaderBar from '../../components/Header-bar/index';
 export const PlacesScreen = ({navigation, props}) => {
   return (
     <View>
-      <HeaderBar title={"Home"} color={"white"}  style={{ backgroundColor: '#607d8b' }} />
+      <HeaderBar title={"Places"} color={"white"}  style={{ backgroundColor: '#cddd38' }} />
       <Places/>
     </View>
   );

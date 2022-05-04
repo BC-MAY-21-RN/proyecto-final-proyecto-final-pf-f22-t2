@@ -2,6 +2,7 @@ export const theme = {
     colors: {
         primary: '#f75f6a',
         secondary: '#01bcd4',
+        terciary: '#eef4c3',
         dark: '#4e4d57',
         gray: 'gray',
     },
@@ -45,6 +46,15 @@ export const shadow = {
       },
       elevation: 10,
     },
-  
+    third: {
+      shadowColor: theme.colors.terciary,
+      shadowRadius: 6,
+      shadowOpacity: 0.7,
+      shadowOffset: {
+        width: -2,
+        height: 2,
+      },
+      elevation: 10,
+    },
   };
 
