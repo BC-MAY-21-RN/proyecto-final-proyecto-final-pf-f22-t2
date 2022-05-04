@@ -31,7 +31,7 @@ export const SignupScreen = () => {
   return (
     <ContainerCenter>
       <SafeAreaView>
-        <Logo color={'#f75f6a'}/>
+        <Logo color={'#f75f6a'} size={125}/>
       </SafeAreaView>
       <ContainerLeft>
         <MyText color={'#4e4d57'} size={'30px'} bold>{isLoginScreen?'Sign In':'Sign Up'}</MyText>

@@ -5,11 +5,12 @@ import { data } from "./data";
 import { Container, Content, Image } from './styled';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { shadow } from '../../library/utils/theme';
+import HeaderBar from '../../components/Header-bar';
 
 export const EventsScreen = () => {
 
   const renderItem = ({ item }) => (
-    <Container style={[shadow.light]}>
+    <Container style={[shadow.second]}>
       <Image source={item.img}/>
       <Content>
         <View>
@@ -24,7 +25,7 @@ export const EventsScreen = () => {
 
   return (
     <View>
-      <MyText color={'#4e4d57'} size={'25px'} bold>Events</MyText>
+      <HeaderBar title={"Events"} color={"white"}  style={{ backgroundColor: '#01bcd4' }} />
       <FlatList
         data={data}
         renderItem={renderItem}
