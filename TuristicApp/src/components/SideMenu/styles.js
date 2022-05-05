@@ -3,26 +3,27 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   avatar: {
     alignItems: "center",
-    padding: 15,
+    backgroundColor: "white",
+    paddingTop: 55,
   },
   homeIcon: {
     position: "absolute",
     right: 15,
   },
   listItems: {
-    marginTop: 40,
+    backgroundColor: "white",
+    paddingTop: 45,
+  },
+  logoutMenu: {
+    paddingTop: 250,
+    paddingBottom: 50,
   },
   sidemenu: {
-    height: "100%",
-    paddingTop: 60,
-    width: "55%",
-    borderBottomWidth: 0,
-    borderLeftWidth: 0,
-    borderRightColor: "grey",
-    borderRadius: 25,
-    borderStyle: "solid", 
-    borderTopWidth: 0,
-    borderWidth: 3,
-    zIndex: 9999,
+    height: '100%',
+    position: "absolute",
+    width: '50%',
+    top: 0,
+    bottom: 0,
+    zIndex: 2,
   },
 })
