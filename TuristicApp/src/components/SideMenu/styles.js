@@ -23,5 +23,6 @@ export const styles = StyleSheet.create({
     borderStyle: "solid", 
     borderTopWidth: 0,
     borderWidth: 3,
+    zIndex: 9999,
   },
 })
