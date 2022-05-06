@@ -13,4 +13,7 @@ export const styles = StyleSheet.create({
         left: 105,
         zIndex: 2,
     },
+    headerB: {
+        zIndex: 3,
+    },
 })

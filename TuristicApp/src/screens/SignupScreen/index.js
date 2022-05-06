@@ -43,6 +43,7 @@ export const SignupScreen = () => {
         <MyInput text={'Password'}
           onChangeText={value => setPassword(value)}
           value={password} disabled={password?true:false}
+          secureTextEntry={true}
         />
         {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>

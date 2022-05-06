@@ -14,8 +14,8 @@ export const Navigation = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!currentUser?<Stack.Screen name="Signup" component={SignupScreen} />:
       <>
-      <Stack.Screen name="Events" component={EventsScreen} />
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Events" component={EventsScreen} />
       <Stack.Screen name="Places" component={PlacesScreen} />
       </>}
     </Stack.Navigator>

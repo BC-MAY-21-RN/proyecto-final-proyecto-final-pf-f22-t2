@@ -4,9 +4,12 @@ import { Drawer } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-paper';
 import { styles } from './styles';
+import { signOut } from '../../library/utils/auth';
+import { useNavigation } from '@react-navigation/native';
 
 const SideMenu = () => {
   const [active, setActive] = useState('');
+  const navigation = useNavigation(); 
 
   return (
     <View style={styles.sidemenu}>
@@ -21,8 +24,8 @@ const SideMenu = () => {
             <Drawer.Item
               icon={"home"}
               label="Home"
-              active={active === 'one'}
-              onPress={() => setActive('first')}
+              // active={active === 'one'}
+              onPress={() => navigation.navigate('Home')}
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black"  style={styles.homeIcon}/>
           </View>
@@ -31,7 +34,7 @@ const SideMenu = () => {
               icon={"map"}
               label="Place"
               active={active === 'two'}
-              onPress={() => setActive('second')}
+              onPress={() => navigation.navigate('Places')}
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black"  style={styles.homeIcon}/>
           </View>
@@ -40,7 +43,7 @@ const SideMenu = () => {
               icon={"calendar"}
               label="Events"
               active={active === 'three'}
-              onPress={() => setActive('second')}
+              onPress={() => navigation.navigate('Events')}
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black"  style={styles.homeIcon}/>
           </View>
@@ -67,7 +70,7 @@ const SideMenu = () => {
               icon={"logout"}
               label="Logout"
               active={active === 'six'}
-              onPress={() => setActive('second')}
+              onPress={signOut}
             />
           </View>
         </Drawer.Section>
