@@ -1,17 +1,32 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import {View, Pressable} from 'react-native';
 import { Appbar } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
 import {styles} from '../Header-bar/styles';
-const HeaderBar = ({title, color,style} ) => (
- 
-    <Appbar.Header style={style} >
-      <Appbar.Action icon="menu" onPress={() => console.log('')} />
-      <Appbar.Action icon="magnify" onPress={() => console.log('')}  style={styles.magnifyIcon} />
-      <Appbar.Content title={title} color={color} style={styles.homeText} />
-    </Appbar.Header>
+import SideMenu from '../SideMenu';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+const HeaderBar = ({title, color, style} ) => { 
+  const [hamburguer, setHamburguer] = useState(false);
 
- );
+  return (
+    <View style={styles.headerB}>
+      <Appbar.Header style={style} >
+        <Appbar.Action icon="menu" color={"white"} onPress={() => setHamburguer(!hamburguer)} />
+        <Appbar.Action icon="magnify" color={"white"} onPress={() => console.log('')}  style={styles.magnifyIcon} />
+        <Appbar.Content title={title} color={color} style={styles.homeText} />
+        {hamburguer && <SideMenu/>} 
+        {hamburguer && (
+          <View style={styles.closeIcon}>
+            <Pressable onPress={() => setHamburguer(!hamburguer)}>
+              <Icon name="close" size={20} color="black" />
+            </Pressable>
+          </View>
+        )}
+      </Appbar.Header>
+    </View>
+  )
+
+  };
 
 export default HeaderBar
 

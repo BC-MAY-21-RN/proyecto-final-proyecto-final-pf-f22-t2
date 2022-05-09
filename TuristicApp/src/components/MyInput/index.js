@@ -2,7 +2,7 @@ import React from 'react'
 import { MyText } from '../MyText'
 import { StyledInput, Container } from './styled'
 
-export const MyInput = ({ disabled, text, placeholder, onChangeText, value }) => {
+export const MyInput = ({ disabled, text, placeholder, onChangeText, value, secureTextEntry }) => {
   return (
     <Container>
       <MyText bold color={'#f75f6a'}>{text}</MyText>
@@ -10,6 +10,7 @@ export const MyInput = ({ disabled, text, placeholder, onChangeText, value }) =>
         placeholder={placeholder}
         onChangeText={onChangeText}
         value={value}
+        secureTextEntry={secureTextEntry}
       />
     </Container>
   )

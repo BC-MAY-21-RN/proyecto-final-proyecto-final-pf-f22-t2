@@ -40,7 +40,6 @@ export const signOut = () => {
       });
 };
 
-
 export const infoUser = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true); 

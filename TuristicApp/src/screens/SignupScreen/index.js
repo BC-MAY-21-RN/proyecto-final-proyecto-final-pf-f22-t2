@@ -31,7 +31,7 @@ export const SignupScreen = () => {
   return (
     <ContainerCenter>
       <SafeAreaView>
-        <Logo color={'#f75f6a'}/>
+        <Logo color={'#f75f6a'} size={125}/>
       </SafeAreaView>
       <ContainerLeft>
         <MyText color={'#4e4d57'} size={'30px'} bold>{isLoginScreen?'Sign In':'Sign Up'}</MyText>
@@ -43,6 +43,7 @@ export const SignupScreen = () => {
         <MyInput text={'Password'}
           onChangeText={value => setPassword(value)}
           value={password} disabled={password?true:false}
+          secureTextEntry={true}
         />
         {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>
