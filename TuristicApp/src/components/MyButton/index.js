@@ -4,9 +4,13 @@ import { Container } from './styled'
 import { MyText  } from '../MyText'
 import { styles } from './styles'
 
-export const Button = ({ onPress, text,icon}) => {
+export const Button = ({ onPress, text, icon, disabled}) => {
   return (
-    <Container style={styles.shadow}  onPress={onPress}>
+    <Container 
+      style={styles.shadow}  
+      onPress={onPress}
+      disabled={disabled}
+    >
       {icon&&<Image 
         style={styles.logo} 
           source={{

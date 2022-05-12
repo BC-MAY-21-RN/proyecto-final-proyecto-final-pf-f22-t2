@@ -5,6 +5,10 @@ export const Container = styled.View`
     margin: 10px 0px;
 `
 
+export const ContainerText = styled.View`
+    flex-direction: row;
+`
+
 export const StyledInput = styled.TextInput`
     font-size: 14px;
     border-bottom-width: 1px;

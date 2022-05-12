@@ -9,6 +9,9 @@ export const Container = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    ${props=>props.disabled&&`
+    background-color: gray;
+    `}
 `
 
 
