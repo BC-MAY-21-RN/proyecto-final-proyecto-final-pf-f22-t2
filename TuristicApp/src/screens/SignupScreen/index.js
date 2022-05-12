@@ -68,6 +68,7 @@ export const SignupScreen = () => {
           value={password} disabled={password?true:false}
           secureTextEntry={true}
         />
+        <MyText size={'14px'}>Use 8 or more characters with a mix of letters, numbers and symbols.</MyText>  
         {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>
       <Button 
