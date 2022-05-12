@@ -18,9 +18,23 @@ export const SignupScreen = () => {
   const [password, setPassword] = useState('')
   const [terms, setTerms] = useState(false)
   const [isLoginScreen, setIsLoginScreen] = useState(false)
-
   const {signUp, signIn, errorEmail, errorPassword, setErrorEmail} = useContext(AuthContext)
   
+  const regexEmail = /\S+@\S+\.\S+/
+  const regexPassword = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/
+
+  const isValidEmail=(email)=>{
+      return regexEmail.test(email) 
+  }
+
+  const isValidPassword=(password)=>{
+      return regexPassword.test(password) 
+  }
+  
+  const canSubmitLogin = isValidEmail(email)&&isValidPassword(password)
+  const canSubmitSingUp = canSubmitLogin&&terms
+ 
+
   const handleSingUp = () =>{
     setErrorEmail(null)
     signUp(email, password);
@@ -56,7 +70,11 @@ export const SignupScreen = () => {
         />
         {!isLoginScreen&&<Check value={terms}  onValueChange={value => setTerms(value)} />} 
       </ContainerLeft>
-      <Button onPress={isLoginScreen?handleLogin:handleSingUp} text={isLoginScreen?'Sign In':'Sign Up'}/>
+      <Button 
+        onPress={isLoginScreen?handleLogin:handleSingUp} 
+        text={isLoginScreen?'Sign In':'Sign Up'}
+        disabled={isLoginScreen?!canSubmitLogin:!canSubmitSingUp}
+      />
       <MyText bold size={'14px'}>Or</MyText>
       <Button icon text={isLoginScreen?'Sign In with Google':'Sign Up with Google'}/>
       <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
