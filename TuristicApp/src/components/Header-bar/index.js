@@ -28,5 +28,3 @@ const HeaderBar = ({title, color, style} ) => {
 
   };
 
-export default HeaderBar
-
