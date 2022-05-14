@@ -18,6 +18,7 @@ export const HomeScreen = ({navigation, props}) => {
       <Pressable onPress={() => navigation.navigate('AddPlaces')}>
         <Text>Add new Places</Text>
       </Pressable>
+
     </View>
 
   );

@@ -10,7 +10,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@baronha/react-native-multiple-image-picker": "^0.4.10",
     "@react-native-community/checkbox": "^0.5.12",
     "@react-native-firebase/app": "^14.8.0",
     "@react-native-firebase/auth": "^14.8.0",
@@ -25,6 +24,7 @@
     "react": "17.0.2",
     "react-native": "^0.68.0",
     "react-native-gesture-handler": "^2.4.1",
+    "react-native-image-picker": "^4.8.3",
     "react-native-navigation-drawer-extension": "^4.3.0",
     "react-native-paper": "^4.12.1",
     "react-native-reanimated": "^2.8.0",

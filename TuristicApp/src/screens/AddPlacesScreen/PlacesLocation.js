@@ -96,4 +96,29 @@ const PlacesLocation = ({navigation, route}) => {
   )
 }
 
+function FormAdd() {
+
+  const { name } = route.params;
+  const { category } = route.params;
+  const { keywords } = route.params;
+  const { description } = route.params;
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [address, setAddress] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("")
+  const country = "Colombia";
+
+  return(
+    <View>
+      <FormInput
+        labelText="Longitude"
+        placeholderText="Longitude Places"
+        onChangeText={value => setLongitude(value)}
+        value={longitude}
+        />
+    </View>
+  )
+}
+
 export default PlacesLocation
