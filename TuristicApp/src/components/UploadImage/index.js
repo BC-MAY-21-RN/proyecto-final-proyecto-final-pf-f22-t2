@@ -1,10 +1,18 @@
 import React from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { map, size, filter } from 'lodash';
 import {launchImageLibrary} from 'react-native-image-picker';
 import { Container, ContainerIcon, StyledImage } from './styled';
 
+export function InitImage({image}){
+  return (
+    <Image  
+      source={image?{ uri: image}:require("../../assets/NO-IMAGE.png")} 
+      style={{width:'100%',height:200}}
+    />
+  )
+}
 
 export function UploadImage({imagesSelected, setImagesSelected, number}) {
   
@@ -52,9 +60,9 @@ export function UploadImage({imagesSelected, setImagesSelected, number}) {
           </ContainerIcon>
           )
         }
-        {map(imagesSelected, (imagePlace) =>  (
-          <TouchableOpacity onPress={() => removeImage(imagePlace)}>
-            <StyledImage source={{ uri: imagePlace}} />
+        {map(imagesSelected, (image) =>  (
+          <TouchableOpacity key={image} onPress={() => removeImage(image)}>
+            <StyledImage source={{ uri: image}} />
           </TouchableOpacity>
         ))}
       </Container>

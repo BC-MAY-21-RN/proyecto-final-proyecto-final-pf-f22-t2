@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, TextInput } from 'react-native'
 import React from 'react'
 import { MyText } from '../MyText'
 
@@ -9,11 +9,15 @@ export const FormInput = ({
     value = null,
     multiline = null,
     numberOfLines= null,
+    errorMessage=null,
     ...more
 }) => {
   return (
     <View style={{width: '100%', marginBottom: 20}}>
-    <MyText bold>{labelText}</MyText>
+    <View style={{flexDirection:'row', alignItems:'center'}}>
+      <MyText bold>{labelText}</MyText>
+      <MyText color={'#f75f6a'} size={'12px'}> *  {errorMessage}</MyText>
+    </View>
     <TextInput
       style={{
         padding: 5,

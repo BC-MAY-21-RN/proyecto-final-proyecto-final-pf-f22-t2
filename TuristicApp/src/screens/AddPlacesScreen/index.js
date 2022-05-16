@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
-import { ScrollView } from 'react-native';
-import { ContainerLeft } from '../../library/utils/styledGlobal';
+import { ScrollView, ToastAndroid } from 'react-native';
 import { MyText } from '../../components/MyText';
-import { FormInput } from '../../components/FormInput';
 import { Button } from '../../components/MyButton';
 import { Container, ContainerImage } from './styled';
-import { UploadImage } from '../../components/UploadImage';
-
-
+import { InitImage, UploadImage } from '../../components/UploadImage';
+import { FormAddPlaces } from '../../components/FormAddPlaces';
+import { size ,isEmpty } from 'lodash'
+import { uploadImages, createPlace } from './services';
 
 const AddPlacesScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
@@ -15,93 +14,174 @@ const AddPlacesScreen = ({navigation}) => {
   const [errorCategory, setErrorCategory] = useState("");
   const [errorKeywords, setErrorKeywords] = useState("");
   const [errorDescription, setErrorDescription] = useState("");
+  const [errorLatitude, setErrorLatitude] = useState("");
+  const [errorLongitude, setErrorLongitude] = useState("");
+  const [errorAddress, setErrorAddress] = useState("");
+  const [errorCountry, setErrorCountry] = useState("")
+  const [errorState, setErrorState] = useState("");
+  const [errorCity, setErrorCity] = useState("")
   const [imagesSelected, setImagesSelected] = useState([])
 
-  const addPlaces = () => {
-    console.log(formData)
+  const handlePlaceSave = async() => {
+    if (!validForm()) {
+      return
+    }
+    const responseUploadImages = await uploadImages(imagesSelected, "places")
+    
+    const place = {
+      name : formData.name,
+      category : formData.category,
+      keywords  : formData.keywords,
+      description : formData.description,
+      latitude : formData.latitude,
+      longitude : formData.longitude,
+      address : formData.address,
+      state : formData.state,
+      city : formData.city,
+      country : formData.country,
+      images : responseUploadImages,
+      rating : 0,
+      ratingTotal : 0,
+      creatAt: new Date(),
+    }
+    
+    await createPlace(place)
+
+    navigation.navigate('Places');
+
+    ToastAndroid.show('Touristic Place Saved', ToastAndroid.SHORT);
   }
   
+  const validForm = () => {
+    clearErrors()
+    let isValid = true
+
+    if (isEmpty(formData.name)){
+      setErrorName("Entering Places name")
+      isValid = false
+    }
+    if (isEmpty(formData.category)){
+      setErrorCategory("Select Category")
+      isValid = false
+    }
+    if (isEmpty(formData.keywords)){
+      setErrorKeywords("Entering Places keywords")
+      isValid = false
+    }
+    if (isEmpty(formData.description)){
+      setErrorDescription("Entering Places description")
+      isValid = false
+    }
+    if (isEmpty(formData.latitude)){
+      setErrorLatitude("Entering Places latitude")
+      isValid = false
+    }
+    if (isEmpty(formData.longitude)){
+      setErrorLongitude("Entering Places longitude")
+      isValid = false
+    }
+    if (isEmpty(formData.latitude)){
+      setErrorLatitude("Entering Places latitude")
+      isValid = false
+    }
+    if (isEmpty(formData.latitude)){
+      setErrorLatitude("Entering Places latitude")
+      isValid = false
+    }
+    if (isEmpty(formData.address)){
+      setErrorAddress("Entering Places address")
+      isValid = false
+    }
+
+    if (isEmpty(formData.country)){
+      setErrorCountry("Entering country")
+      isValid = false
+    }
+    if (isEmpty(formData.state)){
+      setErrorState("Entering state")
+      isValid = false
+    }
+    if (isEmpty(formData.city)){
+      setErrorCity("Entering city")
+      isValid = false
+    }
+
+    if(size(imagesSelected)===0){
+      ToastAndroid.show("No image added", ToastAndroid.SHORT);
+      isValid = false
+    }
+
+    return isValid
+  }
+
+  const clearErrors = () => {
+    setErrorName(null)
+    setErrorCategory(null)
+    setErrorKeywords(null)
+    setErrorDescription(null)
+    setErrorLatitude(null)
+    setErrorLongitude(null)
+    setErrorAddress(null)
+    setErrorCountry(null)
+    setErrorState(null)
+    setErrorCity(null)
+  }
+
   return (
     <ScrollView>
-    <ContainerImage source={require('../../assets/fondo3.jpg')}>
-    <Container>
-      <MyText color={'#f75f6a'} size={'30px'} bold>
-        Add New Places
-      </MyText>
-      <ContainerLeft>
-        <FormAdd
+      <InitImage image={imagesSelected[0]}/>
+      <Container>
+        <MyText color={'#f75f6a'} size={'25px'} bold>
+          Add New Places
+        </MyText>
+        <ContainerImage>
+          <MyText bold>
+            Upload Images
+          </MyText>
+          <UploadImage
+            imagesSelected={imagesSelected}
+            setImagesSelected={setImagesSelected}
+            number={4}
+          />
+        </ContainerImage>
+
+        <FormAddPlaces
           formData={formData}
           setFormData={setFormData}
           errorName={errorName}
           errorCategory={errorCategory}
           errorKeywords={errorKeywords}
           errorDescription={errorDescription}
+          errorLatitude={errorLatitude}
+          errorLongitude={errorLongitude}
+          errorAddress={errorAddress}
+          errorState={errorState}
+          errorCity={errorCity}
+          errorCountry={errorCountry}
         />
-        <UploadImage
-          imagesSelected={imagesSelected}
-          setImagesSelected={setImagesSelected}
-          number={4}
-        />
+
         <Button
-        onPress={addPlaces}
-        text={'Nex'}
+          onPress={handlePlaceSave}
+          text={'Nex'}
         />
-      </ContainerLeft>
       </Container>
-    </ContainerImage>
     </ScrollView>
-    
-  )
-}
 
-
-function FormAdd({ formData, setFormData, errorName, errorCategory, errorKeywords, errorDescription }) {
-
-  const onChange = (e, type) => {
-    setFormData({...formData, [type] : e.nativeEvent.text})
-  }
-
-  return(
-    <ContainerLeft>
-      <FormInput
-        labelText="Name"
-        placeholderText="Name Places"
-        onChange={(e) => onChange(e, "name")}
-        defaultValue={formData.name}
-        errorMessage={errorName}
-      />
-      <FormInput
-        labelText="Category"
-        placeholderText="Catetgory Places"
-        onChange={(e) => onChange(e, "category")}
-        defaultValue={formData.category}
-        errorMessage={errorCategory}
-      />
-      <FormInput
-        labelText="Keywords"
-        placeholderText="keywords that describe the plece"
-        onChange={(e) => onChange(e, "keywords")}
-        defaultValue={formData.keywords}
-        errorMessage={errorKeywords}
-      />
-      <FormInput
-        labelText="Description"
-        onChange={(e) => onChange(e, "description")}
-        defaultValue={formData.description}
-        errorMessage={errorDescription}
-        multiline={true}
-        numberOfLines={4}
-      />
-    </ContainerLeft>
   )
 }
 
 const defaultFormValues = () => {
   return {
     name : "",
-    category : "", 
+    category : "",
     keywords  : "",
     description : "",
+    latitude : "",
+    longitude : "",
+    address : "",
+    state : "",
+    city : "",
+    country : "",
   }
 }
 
