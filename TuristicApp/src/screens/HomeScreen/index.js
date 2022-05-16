@@ -11,10 +11,14 @@ export const HomeScreen = ({navigation, props}) => {
     <View>
       <HeaderBar title={"Home"} color={"white"}  style={{ backgroundColor: '#607d8b' }} />
       {/*<ImageCarousel />*/}
-
+      
       <Pressable onPress={signOut}>
         <Text>Salir de sesión</Text>
       </Pressable>
+      <Pressable onPress={() => navigation.navigate('AddPlaces')}>
+        <Text>Add new Places</Text>
+      </Pressable>
+
     </View>
 
   );
