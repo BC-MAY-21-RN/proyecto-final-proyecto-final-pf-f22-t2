@@ -10,8 +10,8 @@ export const Maps = () => {
         style={styles.map}
         //specify our coordinates.
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 2.9273,
+          longitude: -75.28189,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1, //the container will fill the whole screen.
     justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 400,
   },
   map: {
     ...StyleSheet.absoluteFillObject,
