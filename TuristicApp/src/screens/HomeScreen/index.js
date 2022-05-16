@@ -1,8 +1,8 @@
-import { View } from 'react-native'
-import React from 'react'
+import { View, Pressable, Text } from 'react-native';
+import React from 'react';
 import HeaderBar from '../../components/Header-bar/index';
 import { Maps } from '../../components/Maps/index';
-import CarouselCards from '../../components/Carousel/CarouselCards'
+import CarouselCards from '../../components/Carousel/CarouselCards';
 
 export const HomeScreen = ({navigation, props}) => {
   return (

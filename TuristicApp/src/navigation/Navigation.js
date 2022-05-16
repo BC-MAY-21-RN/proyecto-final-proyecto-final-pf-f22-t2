@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {infoUser} from '../library/utils/auth';
+import {AuthProvider, infoUser} from '../library/utils/auth';
 import {SignupScreen} from '../screens/SignupScreen/index';
 import {HomeScreen} from '../screens/HomeScreen/index';
 import {EventsScreen} from '../screens/EventsScreen/index';
@@ -11,6 +11,7 @@ const Stack = createNativeStackNavigator();
 export const Navigation = () => {
   const currentUser = infoUser()
   return (
+    <AuthProvider>
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!currentUser?<Stack.Screen name="Signup" component={SignupScreen} />:
       <>
@@ -19,5 +20,6 @@ export const Navigation = () => {
       <Stack.Screen name="Places" component={PlacesScreen} />
       </>}
     </Stack.Navigator>
+    </AuthProvider>
   );
 };

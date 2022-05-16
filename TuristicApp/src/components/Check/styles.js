@@ -5,5 +5,6 @@ export const styles=StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-start',
         color: '#b6b7ba',
+        marginVertical: 5,
     },
 })
