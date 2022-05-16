@@ -6,7 +6,7 @@ import { Container, ContainerImage } from './styled';
 import { InitImage, UploadImage } from '../../components/UploadImage';
 import { FormAddPlaces } from '../../components/FormAddPlaces';
 import { size ,isEmpty } from 'lodash'
-import { uploadImages, createPlace } from './services';
+import { uploadImages, createPlace } from '../../services/addPlaces';
 
 const AddPlacesScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
@@ -23,9 +23,9 @@ const AddPlacesScreen = ({navigation}) => {
   const [imagesSelected, setImagesSelected] = useState([])
 
   const handlePlaceSave = async() => {
-    if (!validForm()) {
-      return
-    }
+    if (validForm()) {
+      
+    
     const responseUploadImages = await uploadImages(imagesSelected, "places")
     
     const place = {
@@ -50,6 +50,7 @@ const AddPlacesScreen = ({navigation}) => {
     navigation.navigate('Places');
 
     ToastAndroid.show('Touristic Place Saved', ToastAndroid.SHORT);
+    }
   }
   
   const validForm = () => {
