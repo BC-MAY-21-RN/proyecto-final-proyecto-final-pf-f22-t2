@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { View, Pressable, Text } from 'react-native';
-import { Drawer } from 'react-native-paper';
+import { View, Pressable, Text, Touchable } from 'react-native';
+import { Drawer, TouchableRipple } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Avatar } from 'react-native-paper';
+import { Avatar, useTheme } from 'react-native-paper';
 import { styles } from './styles';
 import { signOut } from '../../library/utils/auth';
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 const SideMenu = () => {
   const [active, setActive] = useState('');
   const navigation = useNavigation(); 
-
+  const paperTheme = useTheme();
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>
@@ -65,6 +65,16 @@ const SideMenu = () => {
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black" style={styles.homeIcon}/>
           </View>
+          <Drawer.Section>
+          <TouchableRipple onPress={()=> {toggleTheme()}}>
+            <View style={styles.preference}>
+            <Text> DarkTheme </Text>
+              <View pointerEvents="none">
+              <switch>value={paperTheme.dark} </switch>
+              </View> 
+            </View>
+          </TouchableRipple>
+          </Drawer.Section>
           <View style={styles.logoutMenu}>
             <Drawer.Item
               icon={"logout"}

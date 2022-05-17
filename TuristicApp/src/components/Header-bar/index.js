@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {View, Pressable} from 'react-native';
-import { Appbar } from 'react-native-paper';
+import { withTheme,Appbar, useTheme } from 'react-native-paper';
 import {styles} from '../Header-bar/styles';
 import SideMenu from '../SideMenu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const HeaderBar = ({title, color, style} ) => { 
+const HeaderBar = ({title, color, style , } ) => { 
   const [hamburguer, setHamburguer] = useState(false);
-
+  const {colors}= useTheme();  
   return (
     <View style={styles.headerB}>
       <Appbar.Header style={style} >
