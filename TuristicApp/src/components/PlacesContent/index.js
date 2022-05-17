@@ -1,10 +1,10 @@
-import { ActivityIndicator, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { MyText } from '../MyText'
+import { ActivityIndicator, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { MyText } from '../MyText';
 import { ContainerPlace, ImageStyled, Content, Location } from './styled';
 import { Score } from '../Score';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { size } from 'lodash'
+import { size } from 'lodash';
 
 
 export const PlacesContent = ({ item }) => {

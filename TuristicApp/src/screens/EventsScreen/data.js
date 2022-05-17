@@ -46,6 +46,6 @@ export const data = [
         date: '20 de enero',
         description: 'El Festival Folclórico, Reinado Nacional del Bambuco y Muestra Internacional del Folclor, es una de las fiestas más importantes del sur de Colombia, específicamente del departamento del Huila, cuya capital, Neiva, es la sede del festival. Se realizan en honor a San Juan y San Pedro.',
         img: require('../../assets/img/imagen2.jpg'),
-    }
+    },
 ]
 

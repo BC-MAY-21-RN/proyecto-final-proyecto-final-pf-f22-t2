@@ -1,8 +1,8 @@
 import { FlatList } from 'react-native';
 import React from 'react';
 import { data } from "./data";
-import HeaderBar from '../../components/Header-bar';
-import { Provider } from 'react-native-paper'
+import { HeaderBar } from '../../components/Header-bar';
+import { Provider } from 'react-native-paper';
 import { ModalEvents } from '../../components/ModalEvents';
 
 export const EventsScreen = () => {

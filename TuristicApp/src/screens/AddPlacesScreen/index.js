@@ -186,4 +186,4 @@ const defaultFormValues = () => {
   }
 }
 
-export default AddPlacesScreen
+export default AddPlacesScreen;
