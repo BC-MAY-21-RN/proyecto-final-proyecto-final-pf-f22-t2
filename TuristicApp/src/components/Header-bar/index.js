@@ -5,7 +5,7 @@ import {styles} from '../Header-bar/styles';
 import SideMenu from '../SideMenu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const HeaderBar = ({title, color, style} ) => { 
+export const HeaderBar = ({title, color, style} ) => { 
   const [hamburguer, setHamburguer] = useState(false);
 
   return (

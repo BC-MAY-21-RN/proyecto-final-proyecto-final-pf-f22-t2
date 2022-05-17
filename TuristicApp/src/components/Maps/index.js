@@ -1,5 +1,5 @@
-import { View,StyleSheet } from 'react-native'
-import React from 'react'
+import { View,StyleSheet } from 'react-native';
+import React from 'react';
 import MapView from 'react-native-maps';
 
 export const Maps = () => {

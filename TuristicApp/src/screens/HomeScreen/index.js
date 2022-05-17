@@ -1,6 +1,6 @@
 import { View, Pressable, Text } from 'react-native';
 import React from 'react';
-import HeaderBar from '../../components/Header-bar/index';
+import { HeaderBar } from '../../components/Header-bar/index';
 import { Maps } from '../../components/Maps/index';
 import CarouselCards from '../../components/Carousel/CarouselCards';
 

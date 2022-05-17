@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import React from 'react';
-import {ToastAndroid} from 'react-native';
+import { ToastAndroid } from 'react-native';
 import { useEffect, useState, createContext } from 'react';
 
 export const AuthContext = createContext();
