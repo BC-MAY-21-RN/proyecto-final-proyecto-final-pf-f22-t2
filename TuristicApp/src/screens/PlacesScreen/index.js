@@ -7,7 +7,7 @@ export const PlacesScreen = ({navigation, props}) => {
   return (
     <View>
       <HeaderBar title={"Places"} color={"white"}  style={{ backgroundColor: '#cddd38' }} />
-      <Places/>
+      <Places navigation={navigation}/>
     </View>
   );
 };

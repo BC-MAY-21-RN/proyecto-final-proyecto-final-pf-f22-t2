@@ -4,10 +4,10 @@ import { data } from "./data"
 import { Container } from './styled';
 import { PlacesContent } from '../PlacesContent';
 
-export const Places = () => {
+export const Places = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
-    <PlacesContent item={item}/>
+    <PlacesContent item={item} navigation={navigation}/>
   );
  
   return (

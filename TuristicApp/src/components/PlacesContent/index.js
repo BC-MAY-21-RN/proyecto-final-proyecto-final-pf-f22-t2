@@ -7,7 +7,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { size } from 'lodash'
 
 
-export const PlacesContent = ({ item }) => {
+export const PlacesContent = ({ item, navigation }) => {
+  console.log(item.img)
   return (
     <ContainerPlace>
       <Content>
@@ -24,7 +25,13 @@ export const PlacesContent = ({ item }) => {
         <Score likes={'20 k'} dislikes={'20'}/>
       </Content>
       <Content>
-        <TouchableOpacity>
+        <TouchableOpacity 
+          onPress={() => {
+            navigation.navigate({ 
+              name: 'DetailsPlace', 
+              params: { item: item }, merge: true,});
+          }}   
+        >
           <ImageStyled 
             source={item.img} 
             PlaceholderContent={<ActivityIndicator color="#fff"/>}
