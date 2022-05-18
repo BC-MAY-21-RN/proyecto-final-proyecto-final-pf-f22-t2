@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     paddingTop: 45,
   },
   logoutMenu: {
-    paddingTop: 250,
+    paddingTop: 50,
     paddingBottom: 50,
   },
   sidemenu: {

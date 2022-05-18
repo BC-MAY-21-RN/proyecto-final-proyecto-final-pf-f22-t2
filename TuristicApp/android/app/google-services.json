@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "271476902555-grq6q8lbg6fe04bretpm3r7q248jha67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.turisticapp",
+            "certificate_hash": "8f2ea551bfc1f2ef7c4f60795d4fe5b91711c6ef"
+          }
+        },
+        {
           "client_id": "271476902555-o0p2km8iutdiv7nisjkja9kj93shkilt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -37,6 +45,13 @@
             {
               "client_id": "271476902555-daj7al0p1eu84besu4iag5f75t1ff1jo.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "271476902555-vctuojtic69o64m6tqk0kdi44p45n33l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "turisticapp.TuristicApp"
+              }
             }
           ]
         }
