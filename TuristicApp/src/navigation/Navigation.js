@@ -6,7 +6,6 @@ import {HomeScreen} from '../screens/HomeScreen/index';
 import {EventsScreen} from '../screens/EventsScreen/index';
 import {PlacesScreen} from '../screens/PlacesScreen/index';
 import AddPlacesScreen from '../screens/AddPlacesScreen';
-import PlacesLocation from '../screens/AddPlacesScreen/PlacesLocation';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +20,7 @@ export const Navigation = () => {
       <Stack.Screen name="Events" component={EventsScreen} />
       <Stack.Screen name="Places" component={PlacesScreen} />
       <Stack.Screen name="AddPlaces" component={AddPlacesScreen} />
-      <Stack.Screen name="PlacesLocation" component={PlacesLocation} />
+      {/* <Stack.Screen name="PlacesLocation" component={PlacesLocation} /> */}
 
       </>}
     </Stack.Navigator>
