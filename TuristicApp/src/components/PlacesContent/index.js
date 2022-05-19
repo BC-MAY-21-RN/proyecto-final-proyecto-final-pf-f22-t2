@@ -8,19 +8,19 @@ import { size } from 'lodash'
 
 
 export const PlacesContent = ({ item, navigation }) => {
-  console.log(item.img)
+ 
   return (
     <ContainerPlace>
       <Content>
         <TouchableOpacity>
-          <MyText bold color={'#4e4d57'} size={'18px'}>{item.name}</MyText>
+          <MyText bold color={'#4e4d57'} size={'18px'}>{item.place.name}</MyText>
         </TouchableOpacity>
           <MyText color={'#4e4d57'} size={'14px'}>
-            {size(item.description) > 0 ? `${item.description.substr(0,50)}..`: item.description}
+            {size(item.place.description) > 0 ? `${item.place.description.substr(0,50)}..`: item.place.description}
           </MyText>
         <Location>
           <Icon name={"location"} size={25} color={"black"}/>
-          <MyText color={'#4e4d57'} size={'14px'}>{item.location}</MyText>
+          <MyText color={'#4e4d57'} size={'14px'}>{item.place.city}, {item.place.state}</MyText>
         </Location>
         <Score likes={'20 k'} dislikes={'20'}/>
       </Content>
@@ -31,9 +31,10 @@ export const PlacesContent = ({ item, navigation }) => {
               name: 'DetailsPlace', 
               params: { item: item }, merge: true,});
           }}   
+          key={item.id}
         >
           <ImageStyled 
-            source={item.img} 
+            source= {{ uri: item.place.images[0]}} 
             PlaceholderContent={<ActivityIndicator color="#fff"/>}
           />
         </TouchableOpacity>

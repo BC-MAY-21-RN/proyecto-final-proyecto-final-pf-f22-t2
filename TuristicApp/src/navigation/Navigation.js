@@ -1,16 +1,17 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {AuthProvider, infoUser} from '../library/utils/auth';
 import {SignupScreen} from '../screens/SignupScreen/index';
 import {HomeScreen} from '../screens/HomeScreen/index';
 import {EventsScreen} from '../screens/EventsScreen/index';
 import {PlacesScreen} from '../screens/PlacesScreen/index';
 import AddPlacesScreen from '../screens/AddPlacesScreen';
 import DetailsPlaceScreen from '../screens/DetailsPlacesScreen';
+import { AuthProvider, infoUser } from '../library/utils/auth'
 
 const Stack = createNativeStackNavigator();
 
 export const Navigation = () => {
+
   const currentUser = infoUser()
   return (
     <AuthProvider>
