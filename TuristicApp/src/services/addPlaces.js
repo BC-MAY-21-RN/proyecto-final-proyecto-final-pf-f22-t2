@@ -4,10 +4,33 @@ import storage from '@react-native-firebase/storage';
 
 export const createPlace = (place) => {
   return firestore()
-  .collection('place')
+  .collection('Places')
   .doc()
   .set({place});
 };
+
+export const getPlaces = () => {
+  return firestore().collection('Places').get();
+};
+
+export const uploadImages = async(imagesSelected, file) => {
+  const imagesUrl = []
+  await Promise.all(
+    map(imagesSelected, async(image) => {
+      let currentId = Math.floor(
+        100000 + Math.random() * 90000,
+      ).toString();
+      const reference = storage().ref(`/images/${file}/${currentId}`)
+      await reference.putFile(image)
+      const url = await reference.getDownloadURL();
+      imagesUrl.push(url)
+      }
+    )
+  )
+  return imagesUrl
+}
+
+// ----------------------------------------------
 
 export const createService = (currentTPId, currentServiceId, service) =>{
   return firestore()
@@ -18,9 +41,7 @@ export const createService = (currentTPId, currentServiceId, service) =>{
     .set(service);
 }
 
-export const getPlaces = () => {
-  return firestore().collection('Places').get();
-};
+
 
 export const getTPById = currentTPId => {
   return firestore().collection('TouristicPlace').doc(currentTPId).get();
@@ -34,19 +55,3 @@ export const getServiceByPTId = currentTPId => {
     .get();
 };
 
-export const uploadImages = async(imagesSelected, file) => {
-  const imagesUrl = []
-  await Promise.all(
-    map(imagesSelected, async(image) => {
-      let currentId = Math.floor(
-        100000 + Math.random() * 90000,
-      ).toString();
-      const reference = storage().ref(`/images/${file}/${currentId}`)
-      await reference.putFile(image)
-      const url = await reference.getDownloadURL();
-        imagesUrl.push(url)
-      }
-    )
-  )
-  return imagesUrl
-}
