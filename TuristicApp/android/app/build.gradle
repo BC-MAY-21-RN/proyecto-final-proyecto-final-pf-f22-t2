@@ -214,10 +214,10 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('turisticapp.keystore')
+            storeFile file('debug.keystore')
             storePassword 'android'
-            keyAlias 'fbalias'
-            keyPassword 'firestore'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
     }
     buildTypes {
