@@ -2,6 +2,7 @@ import auth from '@react-native-firebase/auth';
 import React from 'react';
 import {ToastAndroid} from 'react-native';
 import { useEffect, useState, createContext } from 'react';
+import firestore from '@react-native-firebase/firestore';
 
 export const AuthContext = createContext();
 
@@ -22,13 +23,20 @@ export const AuthProvider = ({ children }) => {
         if (err.code == 'auth/wrong-password'){
           setErrorPassword("Wrong Password")
         }
-        
       });
   };
-  const signUp = (email, password) => {
+  const signUp = (email, password, dataUser) => {
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
+        firestore().collection('users').doc(auth().currentUser.uid)
+        .set({
+          dataUser,
+          createdAt: firestore.Timestamp.fromDate(new Date()),
+        })
+        .catch(error => {
+            console.log('Something went wrong with added user to firestore: ', error);
+        })
         ToastAndroid.show('Signed up', ToastAndroid.SHORT);
       })
       .catch(err => {
@@ -86,3 +94,5 @@ export const infoUser = () => {
 
     return currentUser
 }
+
+

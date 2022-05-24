@@ -9,6 +9,7 @@ import DetailsPlaceScreen from '../screens/DetailsPlacesScreen';
 import { AuthProvider, infoUser } from '../library/utils/auth';
 import { SearchScreen } from '../screens/SearchScreen';
 import { FoodScreen } from '../screens/FoodScreen';
+import AddUserScreen from '../screens/AddUserScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +20,11 @@ export const Navigation = () => {
   return (
     <AuthProvider>
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      {!currentUser?<Stack.Screen name="Signup" component={SignupScreen} />:
+      {!currentUser?
+      <>
+      <Stack.Screen name="Signup" component={SignupScreen} />
+      <Stack.Screen name="AddUser" component={AddUserScreen} />
+      </>:
       <>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Events" component={EventsScreen} />

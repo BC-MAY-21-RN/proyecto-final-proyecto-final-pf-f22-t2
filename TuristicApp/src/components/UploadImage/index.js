@@ -14,7 +14,7 @@ export function InitImage({image}){
   )
 }
 
-export function UploadImage({imagesSelected, setImagesSelected, number}) {
+export function UploadImage({imagesSelected, setImagesSelected, number, photo}) {
   
     const selectImage = () => {
       launchImageLibrary(
@@ -62,7 +62,7 @@ export function UploadImage({imagesSelected, setImagesSelected, number}) {
         }
         {map(imagesSelected, (image) =>  (
           <TouchableOpacity key={image} onPress={() => removeImage(image)}>
-            <StyledImage source={{ uri: image}} />
+            <StyledImage photo={photo} source={{ uri: image}} />
           </TouchableOpacity>
         ))}
       </Container>
