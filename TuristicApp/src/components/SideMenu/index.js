@@ -52,7 +52,7 @@ const SideMenu = () => {
               icon={"food"}
               label="Food"
               active={active === 'four'}
-              onPress={() => setActive('second')}
+              onPress={() => navigation.navigate('Food')}
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="black"  style={styles.homeIcon}/>
           </View>
