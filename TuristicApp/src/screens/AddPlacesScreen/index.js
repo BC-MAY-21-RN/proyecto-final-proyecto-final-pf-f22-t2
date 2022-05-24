@@ -24,7 +24,6 @@ const AddPlacesScreen = ({navigation}) => {
 
   const handlePlaceSave = async() => {
     if (validForm()) {
-      
     
     const responseUploadImages = await uploadImages(imagesSelected, "places")
     
@@ -80,15 +79,7 @@ const AddPlacesScreen = ({navigation}) => {
     if (isEmpty(formData.longitude)){
       setErrorLongitude("Entering Places longitude")
       isValid = false
-    }
-    if (isEmpty(formData.latitude)){
-      setErrorLatitude("Entering Places latitude")
-      isValid = false
-    }
-    if (isEmpty(formData.latitude)){
-      setErrorLatitude("Entering Places latitude")
-      isValid = false
-    }
+    } 
     if (isEmpty(formData.address)){
       setErrorAddress("Entering Places address")
       isValid = false
