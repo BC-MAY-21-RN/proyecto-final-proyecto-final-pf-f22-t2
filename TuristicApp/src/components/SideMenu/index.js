@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { View, Text } from 'react-native';
+import React, {useState} from 'react';
+import { View, Pressable, Text } from 'react-native';
 import { Drawer } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-paper';
 import { styles } from './styles';
-import { AuthContext } from '../../library/utils/auth'
+import { signOut } from '../../library/utils/auth';
 import { useNavigation } from '@react-navigation/native';
 
 const SideMenu = () => {
   const [active, setActive] = useState('');
   const navigation = useNavigation(); 
-  const {signOut} = useContext(AuthContext)
+
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>
@@ -22,7 +22,7 @@ const SideMenu = () => {
         <Drawer.Section style={styles.listItems}>
           <View>
             <Drawer.Item 
-              icon={"home"}
+              icon= {"home"} 
               label="Home"
               // active={active === 'one'}
               onPress={() => navigation.navigate('Home')}
