@@ -3,15 +3,17 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   avatar: {
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: 'white',
     paddingTop: 55,
+    paddingBottom: 30,
   },
   homeIcon: {
     position: "absolute",
     right: 15,
   },
   listItems: {
-    backgroundColor: "white",
+    // backgroundColor: "#f75f6a",
+    backgroundColor: 'white',
     paddingTop: 45,
   },
   logoutMenu: {
@@ -19,8 +21,9 @@ export const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   sidemenu: {
-    height: '100%',
     position: "absolute",
+    borderColor: '#f75f6a',
+    borderStyle: 'solid',
     width: '50%',
     top: 0,
     bottom: 0,
