@@ -24,7 +24,6 @@ const AddPlacesScreen = ({navigation}) => {
 
   const handlePlaceSave = async() => {
     if (validForm()) {
-      
     
     const responseUploadImages = await uploadImages(imagesSelected, "places")
     

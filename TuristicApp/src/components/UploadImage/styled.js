@@ -18,4 +18,9 @@ export const StyledImage = styled.Image`
     width: 70px;
     margin-right: 15px;
     border-radius: 15px;
+    ${props=>props.photo&&`
+      height: 120px;
+      width: 120px;
+      border-radius: 60px;
+    `}
 `
