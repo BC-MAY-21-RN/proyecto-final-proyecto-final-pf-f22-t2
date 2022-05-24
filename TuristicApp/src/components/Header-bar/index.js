@@ -20,7 +20,7 @@ const HeaderBar = ({title, color, style} ) => {
         {hamburguer && (
           <View style={styles.closeIcon}>
             <Pressable onPress={() => setHamburguer(!hamburguer)}>
-              <Icon name="close" size={20} color="black" />
+              <Icon name="close" size={20} color="#f75f6a" />
             </Pressable>
           </View>
         )}

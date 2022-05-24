@@ -8,6 +8,7 @@ import AddPlacesScreen from '../screens/AddPlacesScreen';
 import DetailsPlaceScreen from '../screens/DetailsPlacesScreen';
 import { AuthProvider, infoUser } from '../library/utils/auth';
 import { SearchScreen } from '../screens/SearchScreen';
+import { FoodScreen } from '../screens/FoodScreen';
 import AddUserScreen from '../screens/AddUserScreen';
 
 
@@ -31,6 +32,7 @@ export const Navigation = () => {
       <Stack.Screen name="AddPlaces" component={AddPlacesScreen} />
       <Stack.Screen name="DetailsPlace" component={DetailsPlaceScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
+      <Stack.Screen name="Food" component={FoodScreen} />
       </>}
     </Stack.Navigator>
     </AuthProvider>
