@@ -1,6 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { MyInput } from '../../components/MyInput';
-import { ContainerCenter, ContainerLeft } from '../../library/utils/styledGlobal';
+import { ContainerLeft } from '../../library/utils/styledGlobal';
 import { Button } from '../../components/MyButton';
 import { AuthContext } from '../../library/utils/auth'
 import { UploadImage } from '../../components/UploadImage';
@@ -8,6 +7,8 @@ import { uploadImages } from '../../services/addPlaces';
 import { ScrollView, Switch } from 'react-native';
 import { Container, ContainerSwitch } from './styled';
 import { MyText } from '../../components/MyText';
+import { FormInput } from '../../components/FormInput';
+import { isEmpty } from 'lodash';
 
 const AddUserScreen = ({route}) => {
   const {signUp, errorEmail, setErrorEmail} = useContext(AuthContext);
@@ -25,33 +26,95 @@ const AddUserScreen = ({route}) => {
   const [contactEmail, setContactEmail] = useState(email);
   const [socilaNetworks, setSocilaNetworks] = useState([]);
 
+  const [errorFirstName, setErrorFirstName] = useState('');
+  const [errorLastName, setErrorLastName] = useState('');
+  const [errorRol, setErrorRol] = useState('');
+  const [errorLatitude, setErrorLatitude] = useState('');
+  const [errorLongitude, setErrorLongitude] = useState('');
+  const [errorDocumentType, setErrorDocumentType] = useState('');
+  const [errorDocumentNumber, setErrorDocumentNumber] = useState('');
+  const [errorPhone, setErrorPhone] = useState('');
+
   const toggleSwitch = () => setGuide(previousState => !previousState);
 
   const handleSingUp = async () =>{
-    setErrorEmail(null)
+    if (validForm()) {
+      
+      const photo = await uploadImages(photoSelected, "users");
 
-    const photo = await uploadImages(photoSelected, "users");
+      const dataUser = {
+        email : email,
+        photo : photo,
+        firstName : firstName,
+        lastName : lastName,
+        rol : rol,
+        latitude : latitude,
+        longitude : longitude,
+        rating : guide,
+        documentType : documentType,
+        documentNumber : documentNumber,
+        phone : phone,
+        contactEmail : contactEmail,
+        rating : 0,
+        ratingTotal : 0,
+        creatAt: new Date(),
+      }
 
-    const dataUser = {
-      email : email,
-      photo : photo,
-      firstName : firstName,
-      lastName : lastName,
-      rol : rol,
-      latitude : latitude,
-      longitude : longitude,
-      rating : guide,
-      documentType : documentType,
-      documentNumber : documentNumber,
-      phone : phone,
-      contactEmail : contactEmail,
-      socilaNetworks : socilaNetworks,
-      rating : 0,
-      ratingTotal : 0,
-      creatAt: new Date(),
+      console.log(dataUser)
+      signUp(email, password, dataUser);
+    }  
+  }
+
+  const validForm = () => {
+    clearErrors()
+    let isValid = true
+
+    if (isEmpty(firstName)){
+      setErrorFirstName("Entering your first name")
+      isValid = false
     }
-    
-    signUp(email, password, dataUser);
+    if (isEmpty(lastName)){
+      setErrorLastName("Entering your last name")
+      isValid = false
+    }
+    if (isEmpty(rol)){
+      setErrorRol("Entering your role")
+      isValid = false
+    }
+    if (isEmpty(latitude)){
+      setErrorLatitude("Entering Places latitude")
+      isValid = false
+    }
+    if (isEmpty(longitude)){
+      setErrorLongitude("Entering Places longitude")
+      isValid = false
+    }
+    if (guide){
+      if (isEmpty(documentType)){
+        setErrorDocumentType("Entering your Document Type")
+        isValid = false
+      }
+      if (isEmpty(documentNumber)){
+        setErrorDocumentNumber("Entering your Document Number")
+        isValid = false
+      }
+      if (isEmpty(phone)){
+        setErrorPhone("Entering city")
+        isValid = false
+      }
+    }
+    return isValid
+  }
+
+  const clearErrors = () => {
+    setErrorFirstName(null)
+    setErrorLastName(null)
+    setErrorRol(null)
+    setErrorLatitude(null)
+    setErrorLongitude(null)
+    setErrorDocumentType(null)
+    setErrorDocumentNumber(null)
+    setErrorPhone(null)
   }
 
   return (
@@ -63,26 +126,37 @@ const AddUserScreen = ({route}) => {
         number={1}
         photo={true}
       />
-      <MyInput text={'First Name'}
+
+      <FormInput 
+        labelText={'First Name'}
         onChangeText={value => setFirstName(value)}
         value={firstName}
+        errorMessage={errorFirstName}
       />
-      <MyInput text={'Last Name'}
+      <FormInput 
+        labelText={'Last Name'}
         onChangeText={value => setLastName(value)}
         value={lastName}
+        errorMessage={errorLastName}
       />
-      <MyInput text={'Rol'}
+      <FormInput 
+        labelText={'Rol'}
         placeholder="Ex: Student"
         onChangeText={value => setRol(value)}
         value={rol}
+        errorMessage={errorRol}
       />
-      <MyInput text={'Latitude'}
+      <FormInput 
+        labelText={'Latitude'}
         onChangeText={value => setLatitude(value)}
         value={latitude}
+        errorMessage={errorLatitude}
       />
-      <MyInput text={'Longitude'}
+      <FormInput 
+        labelText={'Longitude'}
         onChangeText={value => setLongitude(value)}
         value={longitude}
+        errorMessage={errorLongitude}
       />
       <ContainerLeft>
         <MyText bold color={'#f75f6a'}>You are a tour guide </MyText>
@@ -102,22 +176,29 @@ const AddUserScreen = ({route}) => {
 
       
       {guide&&<>
-      <MyInput text={'Document Type'}
+      <FormInput 
+        labelText={'Document Type'}
         placeholderText="Ex: CC or NIT"
         onChangeText={value => setDocumentType(value)}
         value={documentType}
+        errorMessage={errorDocumentType}
       />
-      <MyInput text={'Document Number'}
+      <FormInput 
+        labelText={'Document Number'}
         onChangeText={value => setDocumentNumber(value)}
         value={documentNumber}
         keyboardType={"numeric"}
+        errorMessage={errorDocumentNumber}
       />
-      <MyInput text={'Phone'}
+      <FormInput 
+        labelText={'Phone'}
         onChangeText={value => setPhone(value)}
         value={phone}
         keyboardType={"numeric"}
+        errorMessage={errorPhone}
       />
-      <MyInput text={'Contact email'}
+      <FormInput 
+        labelText={'Contact email'}
         placeholderText={email}
         onChangeText={value => setContactEmail(value)}
         value={contactEmail}
@@ -133,6 +214,5 @@ const AddUserScreen = ({route}) => {
     </ScrollView>
   )
 }
-
 
 export default AddUserScreen;
