@@ -25,7 +25,8 @@ export const ModalFood = ({item}) => {
         <Content>
           <View>
           <MyText color={'#4e4d57'} size={'20px'} bold>{item.name}</MyText>
-          <MyText color={'#4e4d57'} size={'16px'} bold>{item.location}, {item.price}</MyText>
+          <MyText color={'#4e4d57'} size={'16px'} bold>{item.location}</MyText>
+          <MyText color={'#4e4d57'} size={'20px'} bold>{item.price}</MyText>
           </View> 
           <Icon name='add-circle' size={40} color={'#ff825c'}  onPress={showModal}/>
         </Content>
@@ -38,7 +39,8 @@ export const ModalFood = ({item}) => {
           </Close>
           <ContainerModal>
             <MyText color={'#4e4d57'} size={'20px'} bold>{item.name}</MyText>
-            <MyText size={'16px'} bold>{item.location}, {item.date}</MyText>
+            <MyText size={'16px'} bold>{item.location}</MyText>
+            <MyText color={'#4e4d57'} size={'20px'} bold>{item.price}</MyText>
             <Text>{item.description} {item.id}</Text>
           </ContainerModal>
         </Modal>
