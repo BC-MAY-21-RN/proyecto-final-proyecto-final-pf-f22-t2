@@ -3,12 +3,12 @@ import React from 'react';
 import { data } from "./data";
 import HeaderBar from '../../components/Header-bar';
 import { Provider } from 'react-native-paper'
-import { ModalEvents } from '../../components/ModalEvents';
+import { ModalFood } from '../../components/ModalFood';
 
 export const FoodScreen = () => {
 
   const renderItem = ({ item }) => (
-    <ModalEvents item={item}/>
+    <ModalFood item={item}/>
   )
 
   return (
