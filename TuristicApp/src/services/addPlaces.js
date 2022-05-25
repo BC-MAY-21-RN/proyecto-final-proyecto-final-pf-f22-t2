@@ -55,3 +55,11 @@ export const getServiceByPTId = currentTPId => {
     .get();
 };
 
+export const updateRating = (item) => {
+  let newRating = item.place.rating
+  newRating++
+  return firestore()
+    .collection('Places')
+    .doc(item.id)
+    .update({ 'place.rating': newRating })
+};
