@@ -7,6 +7,8 @@ import { InitImage, UploadImage } from '../../components/UploadImage';
 import { FormAddPlaces } from '../../components/FormAddPlaces';
 import { size ,isEmpty } from 'lodash'
 import { uploadImages, createPlace } from '../../services/addPlaces';
+import Icon  from 'react-native-vector-icons/Ionicons';
+import { MapLocation } from '../../components/MapLocation';
 
 const AddPlacesScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
@@ -21,6 +23,8 @@ const AddPlacesScreen = ({navigation}) => {
   const [errorState, setErrorState] = useState("");
   const [errorCity, setErrorCity] = useState("")
   const [imagesSelected, setImagesSelected] = useState([])
+  const [isVisibleMap, setIsVisibleMap] = useState(false)
+  const [location, setLocation] = useState(null)
 
   const handlePlaceSave = async() => {
     if (validForm()) {
@@ -151,10 +155,21 @@ const AddPlacesScreen = ({navigation}) => {
           errorCity={errorCity}
           errorCountry={errorCountry}
         />
+        <Icon 
+          name="location" 
+          size={30} 
+          color={'#f75f6a'}
+          onPress={() => setIsVisibleMap(true)}
+        />
+        <MapLocation
+          visible={isVisibleMap} 
+          setVisible={setIsVisibleMap}
+          setLocation={setLocation}
+        />
 
         <Button
           onPress={handlePlaceSave}
-          text={'Nex'}
+          text={'Save'}
         />
       </Container>
     </ScrollView>
