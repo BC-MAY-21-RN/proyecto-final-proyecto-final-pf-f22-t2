@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Searchbar } from 'react-native-paper';
 import { data } from "../Places/data";
 
-const Search = () => {
+const Search = ({navigation, allPlaces}) => {
+  console.log(allPlaces)
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => {
