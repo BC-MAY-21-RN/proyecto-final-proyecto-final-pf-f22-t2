@@ -22,7 +22,7 @@ export const PlacesContent = ({ item, navigation }) => {
           <Icon name={"location"} size={25} color={"black"}/>
           <MyText color={'#4e4d57'} size={'14px'}>{item.place.city}, {item.place.state}</MyText>
         </Location>
-        <Score likes={'20 k'} dislikes={'20'}/>
+        <Score item={item} />
       </Content>
       <Content>
         <TouchableOpacity 
