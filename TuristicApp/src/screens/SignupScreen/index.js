@@ -12,13 +12,19 @@ import { Footer } from '../../components/Footer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AuthContext } from '../../library/utils/auth'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth'
 
-export const SignupScreen = () => {
+GoogleSignin.configure({
+  webClientId: '271476902555-daj7al0p1eu84besu4iag5f75t1ff1jo.apps.googleusercontent.com',
+});
+
+export const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [terms, setTerms] = useState(false)
   const [isLoginScreen, setIsLoginScreen] = useState(false)
-  const {signUp, signIn, errorEmail, errorPassword, setErrorEmail} = useContext(AuthContext)
+  const { signIn, errorEmail, errorPassword, setErrorEmail} = useContext(AuthContext)
   
   const regexEmail = /\S+@\S+\.\S+/
   const regexPassword = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/
@@ -37,7 +43,22 @@ export const SignupScreen = () => {
 
   const handleSingUp = () =>{
     setErrorEmail(null)
-    signUp(email, password);
+    // signUp(email, password);
+    navigation.navigate({ 
+      name: 'AddUser', 
+      params: { email: email, password: password }, 
+      merge: true,})
+  }
+
+  const googleSignIn = async () => {
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = await auth.GoogleAuthProvider.credential(idToken);
+  
+    // Sign-in the user with the credential
+    const res = await auth().signInWithCredential(googleCredential);
+
   }
 
   const handleLogin = () => {
@@ -77,7 +98,9 @@ export const SignupScreen = () => {
         disabled={isLoginScreen?!canSubmitLogin:!canSubmitSingUp}
       />
       <MyText bold size={'14px'}>Or</MyText>
-      <Button icon text={isLoginScreen?'Sign In with Google':'Sign Up with Google'}/>
+      <Button icon text={isLoginScreen?'Sign In with Google':'Sign Up with Google'}
+        onPress={googleSignIn}
+      />
       <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
     </ContainerCenter>
   );

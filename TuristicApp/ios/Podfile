@@ -19,7 +19,6 @@ target 'TuristicApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
   # Add the Firebase pod for Google Analytics
   pod 'FirebaseAnalytics'
 

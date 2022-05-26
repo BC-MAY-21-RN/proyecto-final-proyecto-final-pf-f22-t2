@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
 
-export const SLIDER_WIDTH = Dimensions.get('window').width + 30
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
+export const SLIDER_WIDTH = Dimensions.get('window').width + 2
+export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.95)
 
 const CarouselCardItem = ({ item, index }) => {
   return (
@@ -19,29 +19,31 @@ const CarouselCardItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 15,
     backgroundColor: 'white',
     borderRadius: 10,
     width: ITEM_WIDTH,
-    paddingBottom: 40,
-    shadowColor: "#000",
+    paddingBottom: 20,
+    shadowColor: "#f75f6a",
     shadowOffset: {
-      width: 0,
+      width: 3,
       height: 3,
     },
-    shadowOpacity: 0.29,
+    shadowOpacity: 0.49,
     shadowRadius: 4.65,
     elevation: 7,
   },
   image: {
     width: ITEM_WIDTH,
-    height: 200,
+    height: 300,
+    borderRadius: 10,
   },
   header: {
     color: "#222",
     fontSize: 28,
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingTop: 20
+    textAlign: "center",
+    paddingTop: 10
   },
   body: {
     color: "#222",

@@ -5,6 +5,7 @@ export const theme = {
         terciary: '#eef4c3',
         dark: '#4e4d57',
         gray: 'gray',
+        orange: '#ff825c',
     },
     fontSizes: {
         huge: '30px',
@@ -48,6 +49,16 @@ export const shadow = {
     },
     third: {
       shadowColor: theme.colors.terciary,
+      shadowRadius: 6,
+      shadowOpacity: 0.7,
+      shadowOffset: {
+        width: -2,
+        height: 2,
+      },
+      elevation: 10,
+    },
+    orang: {
+      shadowColor: theme.colors.orange,
       shadowRadius: 6,
       shadowOpacity: 0.7,
       shadowOffset: {

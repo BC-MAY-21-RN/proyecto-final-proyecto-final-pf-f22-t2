@@ -10,6 +10,7 @@ export const FormInput = ({
     multiline = null,
     numberOfLines= null,
     errorMessage=null,
+    keyboardType=null,
     ...more
 }) => {
   return (
@@ -32,6 +33,7 @@ export const FormInput = ({
       placeholder={placeholderText}
       onChangeText={onChangeText}
       value={value}
+      keyboardType={keyboardType}
       {...more}
     />
   </View>

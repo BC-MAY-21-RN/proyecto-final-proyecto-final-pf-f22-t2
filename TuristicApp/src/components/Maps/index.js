@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
     flex: 1, //the container will fill the whole screen.
     justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 400,
+    marginTop: 510,
+    borderWidth: 2,
+    borderColor: '#f75f6a'
   },
   map: {
     ...StyleSheet.absoluteFillObject,
