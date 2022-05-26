@@ -1,20 +1,22 @@
 import React from 'react';
 import { ContainerLeft } from '../../library/utils/styledGlobal';
 import { FormInput } from '../../components/FormInput';
+import Icon  from 'react-native-vector-icons/Ionicons';
+import { Container, ContainerAddress, ContainerLocation } from './styled';
 
 export function FormAddPlaces({ 
     formData, 
-    setFormData, 
+    setFormData,
+    setIsVisibleMap,
     errorName, 
     errorCategory, 
     errorKeywords, 
     errorDescription,
-    errorLatitude,
-    errorLongitude,
     errorAddress,
     errorState,
     errorCity,
     errorCountry,
+    location,
   }) {
 
   const onChange = (e, type) => {
@@ -52,27 +54,25 @@ export function FormAddPlaces({
         multiline={true}
         numberOfLines={4}
       />
-      <FormInput
-        labelText="Latitude"
-        placeholderText="Latitude"
-        onChange={(e) => onChange(e, "latitude")}
-        defaultValue={formData.latitude}
-        errorMessage={errorLatitude}
-      />
-      <FormInput
-        labelText="Longitude"
-        placeholderText="Longitude"
-        onChange={(e) => onChange(e, "longitude")}
-        defaultValue={formData.longitude}
-        errorMessage={errorLongitude}
-      />
-      <FormInput
-        labelText="Address"
-        placeholderText="Address"
-        onChange={(e) => onChange(e, "address")}
-        defaultValue={formData.address}
-        errorMessage={errorAddress}
-      />
+      <Container>
+      <ContainerAddress>
+        <FormInput
+          labelText="Address"
+          placeholderText="Address"
+          onChange={(e) => onChange(e, "address")}
+          defaultValue={formData.address}
+          errorMessage={errorAddress}
+        />
+      </ContainerAddress>
+        <ContainerLocation>
+          <Icon 
+            name="location" 
+            size={40} 
+            color={location?'#f75f6a':'gray'}
+            onPress={() => setIsVisibleMap(true)}
+          />
+        </ContainerLocation>
+      </Container>
       <FormInput
         labelText="State"
         placeholderText="State"

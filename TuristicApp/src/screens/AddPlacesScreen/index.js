@@ -7,6 +7,8 @@ import { InitImage, UploadImage } from '../../components/UploadImage';
 import { FormAddPlaces } from '../../components/FormAddPlaces';
 import { size ,isEmpty } from 'lodash'
 import { uploadImages, createPlace } from '../../services/addPlaces';
+import { MapLocation } from '../../components/MapLocation';
+import { useMap } from '../../library/hooks/useMap';
 
 const AddPlacesScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
@@ -14,14 +16,16 @@ const AddPlacesScreen = ({navigation}) => {
   const [errorCategory, setErrorCategory] = useState("");
   const [errorKeywords, setErrorKeywords] = useState("");
   const [errorDescription, setErrorDescription] = useState("");
-  const [errorLatitude, setErrorLatitude] = useState("");
-  const [errorLongitude, setErrorLongitude] = useState("");
   const [errorAddress, setErrorAddress] = useState("");
   const [errorCountry, setErrorCountry] = useState("")
   const [errorState, setErrorState] = useState("");
   const [errorCity, setErrorCity] = useState("")
   const [imagesSelected, setImagesSelected] = useState([])
+  const [isVisibleMap, setIsVisibleMap] = useState(false)
+  const [location, setLocation] = useState(null)
 
+  const {position, locationLoaded, setPosition} = useMap();
+  
   const handlePlaceSave = async() => {
     if (validForm()) {
     
@@ -30,10 +34,10 @@ const AddPlacesScreen = ({navigation}) => {
     const place = {
       name : formData.name,
       category : formData.category,
-      keywords  : formData.keywords,
+      keywords : formData.keywords,
       description : formData.description,
-      latitude : formData.latitude,
-      longitude : formData.longitude,
+      latitude : location.latitude,
+      longitude : location.longitude,
       address : formData.address,
       state : formData.state,
       city : formData.city,
@@ -72,14 +76,6 @@ const AddPlacesScreen = ({navigation}) => {
       setErrorDescription("Entering Places description")
       isValid = false
     }
-    if (isEmpty(formData.latitude)){
-      setErrorLatitude("Entering Places latitude")
-      isValid = false
-    }
-    if (isEmpty(formData.longitude)){
-      setErrorLongitude("Entering Places longitude")
-      isValid = false
-    } 
     if (isEmpty(formData.address)){
       setErrorAddress("Entering Places address")
       isValid = false
@@ -111,13 +107,24 @@ const AddPlacesScreen = ({navigation}) => {
     setErrorCategory(null)
     setErrorKeywords(null)
     setErrorDescription(null)
-    setErrorLatitude(null)
-    setErrorLongitude(null)
     setErrorAddress(null)
     setErrorCountry(null)
     setErrorState(null)
     setErrorCity(null)
   }
+
+  const loadMap = () => { 
+    return (
+      <MapLocation
+        visible={isVisibleMap} 
+        setVisible={setIsVisibleMap}
+        setLocation={setLocation}
+        siteLatitude={position.latitude}
+        siteLongitude={position.longitude}
+        onSiteChange={true}
+        setPlacePosition={setPosition}/>
+    );
+  };
 
   return (
     <ScrollView>
@@ -133,28 +140,30 @@ const AddPlacesScreen = ({navigation}) => {
           <UploadImage
             imagesSelected={imagesSelected}
             setImagesSelected={setImagesSelected}
-            number={4}
+            number={6}
           />
         </ContainerImage>
 
         <FormAddPlaces
           formData={formData}
           setFormData={setFormData}
+          setIsVisibleMap={setIsVisibleMap}
           errorName={errorName}
           errorCategory={errorCategory}
           errorKeywords={errorKeywords}
           errorDescription={errorDescription}
-          errorLatitude={errorLatitude}
-          errorLongitude={errorLongitude}
           errorAddress={errorAddress}
           errorState={errorState}
           errorCity={errorCity}
           errorCountry={errorCountry}
+          location={location}
         />
+          {locationLoaded ? loadMap() : undefined}
+     
 
         <Button
           onPress={handlePlaceSave}
-          text={'Nex'}
+          text={'Save'}
         />
       </Container>
     </ScrollView>

@@ -60,7 +60,6 @@ const AddUserScreen = ({route}) => {
         creatAt: new Date(),
       }
 
-      console.log(dataUser)
       signUp(email, password, dataUser);
     }  
   }
