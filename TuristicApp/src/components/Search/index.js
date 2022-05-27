@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Searchbar } from 'react-native-paper';
-import {TextInput} from 'react-native'
+import { FlatList } from 'react-native';
+import { PlacesContent } from '../PlacesContent';
 
-const Search = ({ allPlaces }) => {
+const Search = ({ allPlaces, navigation }) => {
   
+  const [showAutoComplete, setShowAutoComplete] = useState(false)
   const [searchQuery, setSearchQuery] = useState('');
   
   const dataFilter = allPlaces
@@ -18,31 +20,9 @@ const Search = ({ allPlaces }) => {
     }
   }, [searchQuery]);
 
-
-  console.log(dataFilter)
-
-  // const onChangeSearch = query => {
-  //   setSearchQuery(query);
-  //   const filteredData = allPlaces.place.filter((el) => {
-  //     if (query === el.city) {
-  //         return el;
-  //       }
-  //       else {
-  //         return console.log('no hay resultados')
-  //       }
-  //   })
-
-  //   return (
-  //       <ul>
-  //       {filteredData.map((item) => (
-  //         <>
-  //           <p>{item.name}</p>
-  //             <li key={item.id}>{item.name}</li>
-  //         </>
-  //           ))}
-  //       </ul>
-  //   )
-  // }
+  const renderItem = ({ item }) => (
+    <PlacesContent item={item} navigation={navigation}/>
+  );
 
   return (
     <>
@@ -51,6 +31,11 @@ const Search = ({ allPlaces }) => {
       onChangeText={setSearchQuery}
       value={searchQuery}
     />
+      {showAutoComplete&&<FlatList
+          data={dataFilter}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+      />}
     </>
   );
 };

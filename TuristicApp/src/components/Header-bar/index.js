@@ -32,8 +32,7 @@ const HeaderBar = ({ title, color, style, allPlaces} ) => {
       </Appbar.Header>
     </View>
   )
-
-  };
+};
 
 export default HeaderBar
 
