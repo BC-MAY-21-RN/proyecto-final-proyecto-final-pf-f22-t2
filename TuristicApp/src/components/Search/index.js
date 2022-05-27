@@ -1,40 +1,57 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Searchbar } from 'react-native-paper';
-import { data } from "../Places/data";
+import {TextInput} from 'react-native'
 
-const Search = ({navigation, allPlaces}) => {
-  console.log(allPlaces)
-  const [searchQuery, setSearchQuery] = React.useState('');
+const Search = ({ allPlaces }) => {
+  
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const dataFilter = allPlaces
+    .filter(places => places.place.city.includes(searchQuery))
+    .slice(0, 3);
 
-  const onChangeSearch = query => {
-    setSearchQuery(query);
-    const filteredData = data.filter((el) => {
-      if (query === el.name) {
-          return el;
-        }
-        else {
-          return console.log('no hay resultados')
-        }
-    })
+  useEffect(() => {
+    if (searchQuery.length > 0 && !searchQuery.includes(',')) {
+      setShowAutoComplete(true);
+    } else {
+      setShowAutoComplete(false);
+    }
+  }, [searchQuery]);
 
-    return (
-        <ul>
-        {filteredData.map((item) => (
-          <>
-            <p>{item.name}</p>
-              <li key={item.id}>{item.name}</li>
-          </>
-            ))}
-        </ul>
-    )
-  }
+
+  console.log(dataFilter)
+
+  // const onChangeSearch = query => {
+  //   setSearchQuery(query);
+  //   const filteredData = allPlaces.place.filter((el) => {
+  //     if (query === el.city) {
+  //         return el;
+  //       }
+  //       else {
+  //         return console.log('no hay resultados')
+  //       }
+  //   })
+
+  //   return (
+  //       <ul>
+  //       {filteredData.map((item) => (
+  //         <>
+  //           <p>{item.name}</p>
+  //             <li key={item.id}>{item.name}</li>
+  //         </>
+  //           ))}
+  //       </ul>
+  //   )
+  // }
 
   return (
+    <>
     <Searchbar
       placeholder="Search"
-      onChangeText={onChangeSearch}
+      onChangeText={setSearchQuery}
       value={searchQuery}
     />
+    </>
   );
 };
 

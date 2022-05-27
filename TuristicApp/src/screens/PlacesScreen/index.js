@@ -4,7 +4,7 @@ import { Places } from '../../components/Places';
 import HeaderBar from '../../components/Header-bar/index';
 import { getPlaces } from '../../services/addPlaces';
 
-export const PlacesScreen = ({navigation, props}) => {
+export const PlacesScreen = ({navigation}) => {
   const [allPlaces, setAllPlaces] = useState([])
   const [refreshing, setRefreshing] = useState(false)
 
@@ -35,7 +35,12 @@ export const PlacesScreen = ({navigation, props}) => {
         allPlaces={allPlaces}
         navigation={navigation}
       />
-      <Places navigation={navigation}/>
+      <Places 
+        navigation={navigation} 
+        allPlaces={allPlaces}
+        getAllPlaces={getAllPlaces}
+        refreshing={refreshing}
+        />
     </View>
   );
 };
