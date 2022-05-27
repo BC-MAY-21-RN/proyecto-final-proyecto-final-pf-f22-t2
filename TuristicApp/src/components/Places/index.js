@@ -1,32 +1,10 @@
-import { FlatList, Pressable, ScrollView, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { FlatList, Pressable, Text } from 'react-native'
+import React from 'react'
 import { Container } from './styled';
 import { PlacesContent } from '../PlacesContent';
-import { getPlaces } from '../../services/addPlaces';
 
-export const Places = ({ navigation }) => {
-  const [allPlaces, setAllPlaces] = useState([])
-  const [refreshing, setRefreshing] = useState(false)
-
-  const getAllPlaces = async () => {
-    setRefreshing(true);
-    
-    const places = await getPlaces();
- 
-    let tempPlaces = [];
-    await places.docs.forEach(async places => {
-      await tempPlaces.push({id: places.id, ...places.data()});
-    });
-    await setAllPlaces([...tempPlaces]);
-
-    setRefreshing(false);
-  };
-
-  useEffect(() => {
-    getAllPlaces();
-  }, []);
-
-
+export const Places = ({ navigation, allPlaces, getAllPlaces, refreshing }) => {
+  
   const renderItem = ({ item }) => (
     <PlacesContent item={item} navigation={navigation}/>
   );

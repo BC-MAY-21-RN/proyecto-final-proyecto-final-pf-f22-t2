@@ -6,18 +6,19 @@ import { MyText } from '../MyText';
 import { updateRating } from '../../services/addPlaces'
 
 export const Score = ({ item }) => {
-  const likes = item.place.rating
-  const dislikes = (item.place.ratingTotal - item.place.rating)
+  // const likes = item.place.rating
+  // const dislikes = (item.place.ratingTotal - item.place.rating)
+
   return (
     <Container>
       <TouchableOpacity>
         <Icon name="cards-heart" size={30} color="#f75f6a" onPress={() => updateRating(item)}/>
       </TouchableOpacity>
-      <MyText bold color={'black'}>{likes}</MyText>
+      <MyText bold color={'black'}>0</MyText>
       <TouchableOpacity>
         <Icon name="heart-broken" size={30} color="#2dc653"/>
       </TouchableOpacity>
-      <MyText bold color={'black'}>{dislikes}</MyText>
+      <MyText bold color={'black'}>00</MyText>
     </Container>
   )
 }
