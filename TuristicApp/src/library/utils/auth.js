@@ -7,6 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null)
   const [errorEmail, setErrorEmail] = useState(null)
   const [errorPassword, setErrorPassword] = useState(null)
 
@@ -49,7 +50,26 @@ export const AuthProvider = ({ children }) => {
         }
         console.error(err);
     });
-}
+  }
+
+  const getUser = (email) => {
+    return firestore()
+      .collection('users')
+      .where('dataUser.email', '==', email)
+      .get()
+  };
+
+  const getInfoUser = async () => {
+    const infoUser = await getUser(auth()._user.email);
+    setUser(infoUser.docs[0].data())
+    
+  };
+
+
+  
+  useEffect(() => {
+    getInfoUser()
+  }, []);
 
   const signOut = () => {
     auth()
@@ -62,10 +82,12 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
+        user,
         signIn,
         signOut,
         infoUser,
         signUp,
+        getUser,
         errorEmail,
         setErrorEmail,
         errorPassword,

@@ -50,14 +50,13 @@ const AddUserScreen = ({route}) => {
         rol : rol,
         latitude : latitude,
         longitude : longitude,
-        rating : guide,
+        guide : guide,
         documentType : documentType,
         documentNumber : documentNumber,
         phone : phone,
         contactEmail : contactEmail,
         rating : 0,
         ratingTotal : 0,
-        creatAt: new Date(),
       }
 
       signUp(email, password, dataUser);

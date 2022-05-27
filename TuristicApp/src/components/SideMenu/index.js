@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Drawer } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-paper';
@@ -10,15 +10,17 @@ import { useNavigation } from '@react-navigation/native';
 const SideMenu = () => {
   const [active, setActive] = useState('');
   const navigation = useNavigation(); 
-  const {signOut} = useContext(AuthContext)
+  const {signOut, user} = useContext(AuthContext)
+  console.log(user)
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>
-        <View style={styles.avatar}>
-          <Avatar.Image size={132} source={require('../../assets/avatar.png')} />
-          <Text>Johanna Guide</Text>
-          <Text>johanna@guia.com</Text>
-        </View>
+        <TouchableOpacity style={styles.avatar} onPress={() => {navigation.navigate('Profile',{user})}}>
+          <Avatar.Image size={132} source={{uri:user.dataUser.photo[0]}} 
+          />
+          <Text>{user.dataUser.firstName}</Text>
+          <Text>{user.dataUser.email}</Text>
+        </TouchableOpacity>
         <Drawer.Section style={styles.listItems}>
           <View>
             <Drawer.Item 

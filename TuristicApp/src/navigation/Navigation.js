@@ -10,6 +10,8 @@ import { AuthProvider, infoUser } from '../library/utils/auth';
 import { SearchScreen } from '../screens/SearchScreen';
 import { FoodScreen } from '../screens/FoodScreen';
 import AddUserScreen from '../screens/AddUserScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -33,6 +35,7 @@ export const Navigation = () => {
       <Stack.Screen name="DetailsPlace" component={DetailsPlaceScreen} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Food" component={FoodScreen} />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
       </>}
     </Stack.Navigator>
     </AuthProvider>

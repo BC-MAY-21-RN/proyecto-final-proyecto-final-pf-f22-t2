@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   logoutMenu: {
     paddingTop: 50,
     paddingBottom: 50,
+    height: '100%',
   },
   sidemenu: {
     position: "absolute",
