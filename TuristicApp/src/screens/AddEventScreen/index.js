@@ -4,17 +4,17 @@ import { MyText } from '../../components/MyText';
 import { Button } from '../../components/MyButton';
 import { Container, ContainerImage } from './styled';
 import { InitImage, UploadImage } from '../../components/UploadImage';
-import { FormAddPlaces } from '../../components/FormAddPlaces';
+import { FormAddFood } from '../../components/FormAddFood';
 import { size ,isEmpty } from 'lodash'
-import { uploadImages, createPlace } from '../../services/addPlaces';
+import { uploadImages } from '../../services/servicesImage';
+import { createEvent } from '../../services/servicesEvent'
 import { MapLocation } from '../../components/MapLocation';
 import { useMap } from '../../library/hooks/useMap';
 
-const AddPlacesScreen = ({navigation}) => {
+const AddEventScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
   const [errorName, setErrorName] = useState("");
-  const [errorCategory, setErrorCategory] = useState("");
-  const [errorKeywords, setErrorKeywords] = useState("");
+  const [errorPrice, setErrorPrice] = useState("");
   const [errorDescription, setErrorDescription] = useState("");
   const [errorAddress, setErrorAddress] = useState("");
   const [errorCountry, setErrorCountry] = useState("")
@@ -26,15 +26,14 @@ const AddPlacesScreen = ({navigation}) => {
 
   const {position, locationLoaded, setPosition} = useMap();
   
-  const handlePlaceSave = async() => {
+  const handleEventSave = async() => {
     if (validForm()) {
     
-    const responseUploadImages = await uploadImages(imagesSelected, "places")
+    const responseUploadImages = await uploadImages(imagesSelected, "events")
     
-    const place = {
+    const event = {
       name : formData.name,
-      category : formData.category,
-      keywords : formData.keywords,
+      price : formData.price,
       description : formData.description,
       latitude : location.latitude,
       longitude : location.longitude,
@@ -48,11 +47,11 @@ const AddPlacesScreen = ({navigation}) => {
       creatAt: new Date(),
     }
     
-    await createPlace(place)
+    await createEvent(event)
 
-    navigation.navigate('Places');
+    navigation.navigate('Events');
 
-    ToastAndroid.show('Touristic Place Saved', ToastAndroid.SHORT);
+    ToastAndroid.show('Event Saved', ToastAndroid.SHORT);
     }
   }
   
@@ -61,23 +60,19 @@ const AddPlacesScreen = ({navigation}) => {
     let isValid = true
 
     if (isEmpty(formData.name)){
-      setErrorName("Entering Places name")
+      setErrorName("Entering Events name")
       isValid = false
     }
-    if (isEmpty(formData.category)){
-      setErrorCategory("Select Category")
-      isValid = false
-    }
-    if (isEmpty(formData.keywords)){
-      setErrorKeywords("Entering Places keywords")
+    if (isEmpty(formData.price)){
+      setErrorPrice("Select Price")
       isValid = false
     }
     if (isEmpty(formData.description)){
-      setErrorDescription("Entering Places description")
+      setErrorDescription("Entering Events description")
       isValid = false
     }
     if (isEmpty(formData.address)){
-      setErrorAddress("Entering Places address")
+      setErrorAddress("Entering Events address")
       isValid = false
     }
 
@@ -104,8 +99,7 @@ const AddPlacesScreen = ({navigation}) => {
 
   const clearErrors = () => {
     setErrorName(null)
-    setErrorCategory(null)
-    setErrorKeywords(null)
+    setErrorPrice(null)
     setErrorDescription(null)
     setErrorAddress(null)
     setErrorCountry(null)
@@ -131,7 +125,7 @@ const AddPlacesScreen = ({navigation}) => {
       <InitImage image={imagesSelected[0]}/>
       <Container>
         <MyText color={'#f75f6a'} size={'25px'} bold>
-          Add New Places
+          Add New Event
         </MyText>
         <ContainerImage>
           <MyText bold>
@@ -144,13 +138,12 @@ const AddPlacesScreen = ({navigation}) => {
           />
         </ContainerImage>
 
-        <FormAddPlaces
+        <FormAddFood
           formData={formData}
           setFormData={setFormData}
           setIsVisibleMap={setIsVisibleMap}
           errorName={errorName}
-          errorCategory={errorCategory}
-          errorKeywords={errorKeywords}
+          errorPrice={errorPrice}
           errorDescription={errorDescription}
           errorAddress={errorAddress}
           errorState={errorState}
@@ -159,10 +152,9 @@ const AddPlacesScreen = ({navigation}) => {
           location={location}
         />
           {locationLoaded ? loadMap() : undefined}
-     
 
         <Button
-          onPress={handlePlaceSave}
+          onPress={handleEventSave}
           text={'Save'}
         />
       </Container>
@@ -174,8 +166,7 @@ const AddPlacesScreen = ({navigation}) => {
 const defaultFormValues = () => {
   return {
     name : "",
-    category : "",
-    keywords  : "",
+    price : "",
     description : "",
     latitude : "",
     longitude : "",
@@ -186,4 +177,4 @@ const defaultFormValues = () => {
   }
 }
 
-export default AddPlacesScreen
+export default AddEventScreen

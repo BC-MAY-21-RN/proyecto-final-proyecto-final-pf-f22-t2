@@ -4,7 +4,7 @@ import { FormInput } from '../../components/FormInput';
 import Icon  from 'react-native-vector-icons/Ionicons';
 import { Container, ContainerAddress, ContainerLocation } from './styled';
 
-export function FormAddPlaces({ 
+export function FormAddPlace({ 
     formData, 
     setFormData,
     setIsVisibleMap,
