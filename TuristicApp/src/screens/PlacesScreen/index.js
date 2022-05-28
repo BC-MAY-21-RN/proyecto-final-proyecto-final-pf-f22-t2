@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Places } from '../../components/Places';
 import HeaderBar from '../../components/Header-bar/index';
-import { getPlaces } from '../../services/addPlaces';
+import { getPlaces } from '../../services/servicesPlace';
 
 export const PlacesScreen = ({navigation}) => {
   const [allPlaces, setAllPlaces] = useState([])
@@ -38,8 +38,6 @@ export const PlacesScreen = ({navigation}) => {
       <Places 
         navigation={navigation} 
         allPlaces={allPlaces}
-        getAllPlaces={getAllPlaces}
-        refreshing={refreshing}
         />
     </View>
   );

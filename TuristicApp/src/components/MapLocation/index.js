@@ -19,7 +19,7 @@ export function MapLocation({
   setPlacePosition,  
 }) {
 
-  const containerStyle = {backgroundColor: 'white', margin: 20, height:height-100};
+  const containerStyle = {backgroundColor: 'white', height:height};
   const hideModal = () => setVisible(false);
     
     const confirmLocation = () => {
@@ -93,7 +93,7 @@ export function MapLocation({
       justifyContent: "flex-end",
       alignItems: "center",
       position:'absolute',
-      bottom: 10,
+      bottom: 40,
     },
     containerButton: {
       width: "50%",

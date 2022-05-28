@@ -3,7 +3,7 @@ import React from 'react'
 import { Container } from './styled'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MyText } from '../MyText';
-import { updateRating } from '../../services/addPlaces'
+import { updateRating } from '../../services/servicesPlace'
 
 export const Score = ({ item }) => {
   // const likes = item.place.rating
