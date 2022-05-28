@@ -4,7 +4,7 @@ import { MyText } from '../../components/MyText';
 import { Button } from '../../components/MyButton';
 import { Container, ContainerImage } from './styled';
 import { InitImage, UploadImage } from '../../components/UploadImage';
-import { FormAddFood } from '../../components/FormAddFood';
+import { FormAddEvent } from '../../components/FormAddEvent';
 import { size ,isEmpty } from 'lodash'
 import { uploadImages } from '../../services/servicesImage';
 import { createEvent } from '../../services/servicesEvent'
@@ -14,7 +14,8 @@ import { useMap } from '../../library/hooks/useMap';
 const AddEventScreen = ({navigation}) => {
   const [formData, setFormData] = useState(defaultFormValues());
   const [errorName, setErrorName] = useState("");
-  const [errorPrice, setErrorPrice] = useState("");
+  const [errorDate, setErrorDate] = useState("");
+  const [date, setDate] = useState("YYYY-MM-DD");
   const [errorDescription, setErrorDescription] = useState("");
   const [errorAddress, setErrorAddress] = useState("");
   const [errorCountry, setErrorCountry] = useState("")
@@ -34,6 +35,7 @@ const AddEventScreen = ({navigation}) => {
     const event = {
       name : formData.name,
       price : formData.price,
+      date : date,
       description : formData.description,
       latitude : location.latitude,
       longitude : location.longitude,
@@ -63,8 +65,8 @@ const AddEventScreen = ({navigation}) => {
       setErrorName("Entering Events name")
       isValid = false
     }
-    if (isEmpty(formData.price)){
-      setErrorPrice("Select Price")
+    if (isEmpty(date)){
+      setErrorDate("Select date")
       isValid = false
     }
     if (isEmpty(formData.description)){
@@ -99,7 +101,7 @@ const AddEventScreen = ({navigation}) => {
 
   const clearErrors = () => {
     setErrorName(null)
-    setErrorPrice(null)
+    setErrorDate(null)
     setErrorDescription(null)
     setErrorAddress(null)
     setErrorCountry(null)
@@ -138,18 +140,20 @@ const AddEventScreen = ({navigation}) => {
           />
         </ContainerImage>
 
-        <FormAddFood
+        <FormAddEvent
           formData={formData}
           setFormData={setFormData}
           setIsVisibleMap={setIsVisibleMap}
           errorName={errorName}
-          errorPrice={errorPrice}
+          errorDate={errorDate}
           errorDescription={errorDescription}
           errorAddress={errorAddress}
           errorState={errorState}
           errorCity={errorCity}
           errorCountry={errorCountry}
           location={location}
+          date={date}
+          setDate={setDate}
         />
           {locationLoaded ? loadMap() : undefined}
 
@@ -167,6 +171,7 @@ const defaultFormValues = () => {
   return {
     name : "",
     price : "",
+    date : "",
     description : "",
     latitude : "",
     longitude : "",

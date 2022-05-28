@@ -1,29 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
+import{Text,View} from 'react-native';
 import { ContainerLeft } from '../../library/utils/styledGlobal';
 import { FormInput } from '../../components/FormInput';
 import Icon  from 'react-native-vector-icons/Ionicons';
-import { Container, ContainerAddress, ContainerLocation } from './styled';
+import { 
+  Container, 
+  ContainerAddress, 
+  ContainerLocation, 
+  ContainerDate, 
+  ContainerPrice,
+  ContainerText
+} from './styled';
+import { AddCalendar } from '../AddCalendar';
+import { MyText } from '../MyText';
 
-export function FormAddFood({ 
+
+
+export function FormAddEvent({ 
     formData, 
     setFormData,
     setIsVisibleMap,
     errorName, 
-    errorPrice, 
+    errorDate, 
     errorDescription,
     errorAddress,
     errorState,
     errorCity,
     errorCountry,
     location,
+    date,
+    setDate,
   }) {
-
+  const [isVisibleCalendar, setIsVisibleCalendar] = useState(false)
+  
   const onChange = (e, type) => {
     setFormData({...formData, [type] : e.nativeEvent.text})
   }
-
+  
   return(
     <ContainerLeft>
+
       <FormInput
         labelText="Name"
         placeholderText="Name Places"
@@ -31,14 +47,42 @@ export function FormAddFood({
         defaultValue={formData.name}
         errorMessage={errorName}
       />
-      <FormInput
-        labelText="Price"
-        placeholderText="Foot Price"
-        onChange={(e) => onChange(e, "price")}
-        defaultValue={formData.price}
-        errorMessage={errorPrice}
-        keyboardType={"numeric"}
-      />
+      <Container>
+        <ContainerPrice>
+        <FormInput
+          labelText="Price"
+          placeholderText="Foot Price"
+          onChange={(e) => onChange(e, "price")}
+          defaultValue={formData.price}
+          keyboardType={"numeric"}
+        />
+        </ContainerPrice>
+        <ContainerDate>
+          <ContainerAddress>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
+              <MyText bold>Date</MyText>
+              <MyText color={'#f75f6a'} size={'12px'}>   {errorDate}</MyText>
+            </View>
+            <ContainerText>
+              <Text>{date}</Text>
+            </ContainerText>
+          </ContainerAddress>
+          <ContainerLocation>
+          <Icon 
+            name="calendar" 
+            color={date!="YYYY-MM-DD"?'#f75f6a':'gray'} 
+            size={35} 
+            onPress={() => setIsVisibleCalendar(true)}
+          />
+          <AddCalendar 
+            visible={isVisibleCalendar} 
+            setVisible={setIsVisibleCalendar}
+            date={date}
+            setDate={setDate}
+          />
+          </ContainerLocation>
+        </ContainerDate>
+      </Container>
       <FormInput
         labelText="Description"
         onChange={(e) => onChange(e, "description")}

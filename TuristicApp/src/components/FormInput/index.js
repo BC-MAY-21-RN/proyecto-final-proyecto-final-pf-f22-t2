@@ -17,7 +17,7 @@ export const FormInput = ({
     <View style={{width: '100%', marginBottom: 20}}>
     <View style={{flexDirection:'row', alignItems:'center'}}>
       <MyText bold>{labelText}</MyText>
-      <MyText color={'#f75f6a'} size={'12px'}> *  {errorMessage}</MyText>
+      <MyText color={'#f75f6a'} size={'12px'}>   {errorMessage}</MyText>
     </View>
     <TextInput
       style={{
