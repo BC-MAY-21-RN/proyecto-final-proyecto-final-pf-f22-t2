@@ -11,7 +11,7 @@ const SideMenu = () => {
   const [active, setActive] = useState('');
   const navigation = useNavigation(); 
   const {signOut, user} = useContext(AuthContext)
-  console.log(user)
+  
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>

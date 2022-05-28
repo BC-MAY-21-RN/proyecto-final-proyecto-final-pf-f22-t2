@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
+import { View, SafeAreaView, Image, ScrollView } from "react-native";
+import { Button } from "../../components/MyButton";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { Logo } from "../../components/Logo";
 import {MyText} from '../../components/MyText'
+import { styles } from './styles';
 
-const ProfileScreen = ({route}) => {
+const ProfileScreen = ({navigation, route}) => {
   const { user }= route.params
+  console.log(user.dataUser.guide)
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -21,9 +24,49 @@ const ProfileScreen = ({route}) => {
                     <Logo color={'#f75f6a'} size={80}/>
                     <View style={styles.data}>
                         <MyText bold>{user.dataUser.firstName} {user.dataUser.lastName}</MyText>
+                        <MyText >{user.dataUser.city}, {user.dataUser.state}</MyText>
                         <MyText >{user.dataUser.rol}</MyText>
-                        <MyText bold>{user.dataUser.guide?'ho':'no'}</MyText>
+                        {user.dataUser.guide?
+                          <MyText bold>You are guide</MyText>
+                        :
+                        <MyText bold> 
+                         You are not guide
+                        </MyText>
+                        }
                     </View>
+                </View>
+                <View style={styles.infoGuide}>
+                    <MyText size={'20px'} color={'#f75f6a'} bold>Add new: </MyText>
+                    <MyText bold>
+                    As a guide you will be able to add places, food and events, 
+                    soon your services as a guide will be available. 
+                    </MyText>
+                </View>
+                <View style={styles.infoGuide}>
+                  {user.dataUser.guide?
+                  <View style={styles.continerBtn}>
+                    <View style={styles.btn}>
+                      <Button 
+                        text={'Place'}
+                        onPress={() => {navigation.navigate('AddPlaces')}}
+                      />
+                    </View>
+                    <View style={styles.btn}>
+                      <Button 
+                        text={'Food'}
+                        onPress={() => {navigation.navigate('AddFood')}}
+                        />
+                    </View>
+                    <View style={styles.btn}>
+                      <Button 
+                        text={'Event'}
+                        onPress={() => {navigation.navigate('AddEvent')}}
+                        />
+                    </View>
+                  </View>
+                  :
+                  <Button text={'Activate profile as guide'}/>
+                  }
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -32,56 +75,3 @@ const ProfileScreen = ({route}) => {
 
 export default ProfileScreen;
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#FFF"
-    },
-    
-    image: {
-        flex: 1,
-        height: undefined,
-        width: undefined
-    },
-    
-    
-    profileImage: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
-        overflow: "hidden"
-    },
-    dm: {
-        backgroundColor: "#41444B",
-        position: "absolute",
-        top: 20,
-        width: 30,
-        height: 30,
-        borderRadius: 15,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    
-    add: {
-        backgroundColor: "white",
-        position: "absolute",
-        bottom: 0,
-        right: 0,
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-   containeeData: {
-        flexDirection:'row',
-        marginHorizontal:30,
-        marginVertical:20,
-    },
-    data: {
-        marginHorizontal:20
-    },
-
-    
-});

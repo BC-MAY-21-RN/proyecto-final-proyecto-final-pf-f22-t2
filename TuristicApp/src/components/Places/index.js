@@ -33,9 +33,6 @@ export const Places = ({ navigation }) => {
  
   return (
     <Container> 
-      <Pressable onPress={() => {navigation.navigate('AddPlaces')}}>
-        <Text>ADD Places</Text>
-      </Pressable>
       <FlatList
         data={allPlaces}
         renderItem={renderItem}
