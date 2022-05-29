@@ -3,7 +3,11 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#FFF"
+        flexDirection:'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "#FFF",
+        paddingVertical: 20
     },
     image: {
         flex: 1,
@@ -40,7 +44,7 @@ export const styles = StyleSheet.create({
     containeeData: {
         flexDirection:'row',
         marginHorizontal:30,
-        marginVertical:20,
+        marginVertical:30,
     },
     data: {
         marginHorizontal:20
@@ -55,6 +59,11 @@ export const styles = StyleSheet.create({
     },
     btn:{
         width:'32%'
+    },
+    icon:{
+        position:'absolute',
+        top: '5%',
+        left: '10%',
     }
     
 });

@@ -7,7 +7,6 @@ import firestore from '@react-native-firebase/firestore';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
   const [errorEmail, setErrorEmail] = useState(null)
   const [errorPassword, setErrorPassword] = useState(null)
 
@@ -59,30 +58,17 @@ export const AuthProvider = ({ children }) => {
       .get()
   };
 
-  const getInfoUser = async () => {
-    const infoUser = await getUser(auth()._user.email);
-    setUser(infoUser.docs[0].data())
-    
-  };
-
-
-  
-  useEffect(() => {
-    getInfoUser()
-  }, []);
-
   const signOut = () => {
     auth()
       .signOut()
       .then(() => {
         ToastAndroid.show('Signed Out', ToastAndroid.SHORT);
-      });
+    });
   };
 
   return (
     <AuthContext.Provider
       value={{
-        user,
         signIn,
         signOut,
         infoUser,
