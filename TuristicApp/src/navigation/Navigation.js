@@ -12,8 +12,7 @@ import { FoodScreen } from '../screens/FoodScreen';
 import  AddFoodScreen  from '../screens/AddFoodScreen';
 import  AddEventScreen  from '../screens/AddEventScreen';
 import AddUserScreen from '../screens/AddUserScreen';
-
-
+import {PoleDirectionScreen} from '../screens/PoleDirectionScreen/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +24,7 @@ export const Navigation = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!currentUser?
       <>
+      <Stack.Screen name="PoleDirectionScreen" component={PoleDirectionScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
       <Stack.Screen name="AddUser" component={AddUserScreen} />
       </>:
@@ -38,7 +38,6 @@ export const Navigation = () => {
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="Food" component={FoodScreen} />
       <Stack.Screen name="AddFood" component={AddFoodScreen} />
-      
       </>}
     </Stack.Navigator>
     </AuthProvider>
