@@ -19,3 +19,12 @@ export const updateRating = (item) => {
     .doc(item.id)
     .update({ 'place.rating': newRating })
 };
+
+export const updateRatingDislakes = (item) => {
+  let newRating = item.place.rating
+  newRating--
+  return firestore()
+    .collection('Places')
+    .doc(item.id)
+    .update({ 'place.rating': newRating })
+};
