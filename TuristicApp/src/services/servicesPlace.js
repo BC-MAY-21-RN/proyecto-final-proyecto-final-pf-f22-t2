@@ -20,7 +20,7 @@ export const updateRating = (item) => {
     .update({ 'place.rating': newRating })
 };
 
-export const updateRatingDislakes = (item) => {
+export const updateRatingDislikes = (item) => {
   let newRating = item.place.rating
   newRating--
   return firestore()
