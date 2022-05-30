@@ -23,7 +23,7 @@ export const EventsScreen = () => {
 
     setRefreshing(false);
   };
-  console.log(allEvents)
+  
   useEffect(() => {
     getAllEvents();
   }, []);

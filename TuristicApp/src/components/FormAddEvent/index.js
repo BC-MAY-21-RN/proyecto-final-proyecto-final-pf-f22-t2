@@ -51,7 +51,7 @@ export function FormAddEvent({
         <ContainerPrice>
         <FormInput
           labelText="Price"
-          placeholderText="Foot Price"
+          placeholderText="Cover"
           onChange={(e) => onChange(e, "price")}
           defaultValue={formData.price}
           keyboardType={"numeric"}

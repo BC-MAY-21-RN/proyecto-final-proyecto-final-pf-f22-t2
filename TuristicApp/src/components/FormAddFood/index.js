@@ -33,7 +33,7 @@ export function FormAddFood({
       />
       <FormInput
         labelText="Price"
-        placeholderText="Foot Price"
+        placeholderText="Food Price"
         onChange={(e) => onChange(e, "price")}
         defaultValue={formData.price}
         errorMessage={errorPrice}
