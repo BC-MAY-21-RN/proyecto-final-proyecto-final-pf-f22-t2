@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../library/utils/auth'
 import auth from '@react-native-firebase/auth';
 
-const HeaderBar = ({title, color, style} ) => { 
+const HeaderBar = ({ title, color, style, allPlaces} ) => { 
   const [hamburguer, setHamburguer] = useState(false);
   const navigation = useNavigation();
   const [user, setUser] = useState(null)
@@ -31,7 +31,12 @@ const HeaderBar = ({title, color, style} ) => {
     <View style={styles.headerB}>
       <Appbar.Header style={style} >
         <Appbar.Action icon="menu" color={"white"} onPress={() => setHamburguer(!hamburguer)} />
-        <Appbar.Action icon="magnify" color={"white"} onPress={() => navigation.navigate('Search')}  style={styles.magnifyIcon} />
+        <Appbar.Action 
+          icon="magnify" 
+          color={"white"} 
+          onPress={() => {navigation.navigate('Search', { allPlaces : allPlaces} )}}  
+          style={styles.magnifyIcon} 
+        />
         <Appbar.Content title={title} color={color} style={styles.homeText} />
         {hamburguer && <SideMenu user={user}/>} 
         {hamburguer && (
@@ -44,8 +49,7 @@ const HeaderBar = ({title, color, style} ) => {
       </Appbar.Header>
     </View>
   )
-
-  };
+};
 
 export default HeaderBar
 

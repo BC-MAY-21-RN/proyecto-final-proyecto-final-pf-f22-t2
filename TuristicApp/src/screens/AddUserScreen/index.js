@@ -3,7 +3,7 @@ import { ContainerCenter, ContainerLeft } from '../../library/utils/styledGlobal
 import { Button } from '../../components/MyButton';
 import { AuthContext } from '../../library/utils/auth'
 import { UploadImage } from '../../components/UploadImage';
-import { uploadImages } from '../../services/addPlaces';
+import { uploadImages } from '../../services/servicesImage';
 import { ScrollView, Switch } from 'react-native';
 import { Container, ContainerSwitch } from './styled';
 import { MyText } from '../../components/MyText';

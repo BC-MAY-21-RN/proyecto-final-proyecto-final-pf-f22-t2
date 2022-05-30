@@ -23,8 +23,6 @@ export const styles = StyleSheet.create({
   },
   sidemenu: {
     position: "absolute",
-    borderColor: '#f75f6a',
-    borderStyle: 'solid',
     width: '50%',
     top: 0,
     bottom: 0,

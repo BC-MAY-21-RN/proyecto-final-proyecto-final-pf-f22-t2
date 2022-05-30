@@ -8,7 +8,6 @@ import {
   ContainerLeft,
 } from '../../library/utils/styledGlobal'
 import { Check } from '../../components/Check';
-import { Footer } from '../../components/Footer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AuthContext } from '../../library/utils/auth'
@@ -19,11 +18,11 @@ GoogleSignin.configure({
   webClientId: '271476902555-daj7al0p1eu84besu4iag5f75t1ff1jo.apps.googleusercontent.com',
 });
 
-export const SignupScreen = ({navigation}) => {
+export const SignupScreen = ({ navigation, route }) => {
+  const { isLoginScreen } = route.params
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [terms, setTerms] = useState(false)
-  const [isLoginScreen, setIsLoginScreen] = useState(false)
   const { signIn, errorEmail, errorPassword, setErrorEmail} = useContext(AuthContext)
   
   const regexEmail = /\S+@\S+\.\S+/
@@ -101,7 +100,6 @@ export const SignupScreen = ({navigation}) => {
       <Button icon text={isLoginScreen?'Sign In with Google':'Sign Up with Google'}
         onPress={googleSignIn}
       />
-      <Footer isLoginScreen={isLoginScreen} onPress={() => setIsLoginScreen(!isLoginScreen)}/>
     </ContainerCenter>
   );
 };

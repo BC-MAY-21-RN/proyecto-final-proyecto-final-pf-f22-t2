@@ -3,11 +3,12 @@ import React from 'react'
 import { Container } from './styled'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { MyText } from '../MyText';
-import { updateRating } from '../../services/addPlaces'
+import { updateRating } from '../../services/servicesPlace'
+import { updateRatingDislikes } from '../../services/servicesPlace'
 
 export const Score = ({ item }) => {
   const likes = item.place.rating
-  const dislikes = (item.place.ratingTotal - item.place.rating)
+
   return (
     <Container>
       <TouchableOpacity>
@@ -15,9 +16,8 @@ export const Score = ({ item }) => {
       </TouchableOpacity>
       <MyText bold color={'black'}>{likes}</MyText>
       <TouchableOpacity>
-        <Icon name="heart-broken" size={30} color="#2dc653"/>
+        <Icon name="heart-broken" size={30} color="#2dc653" onPress={() => updateRatingDislikes(item)}/>
       </TouchableOpacity>
-      <MyText bold color={'black'}>{dislikes}</MyText>
     </Container>
   )
 }
