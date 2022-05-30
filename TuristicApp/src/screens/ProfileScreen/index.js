@@ -50,7 +50,7 @@ const ProfileScreen = ({navigation, route}) => {
                     <View style={styles.btn}>
                       <Button 
                         text={'Place'}
-                        onPress={() => {navigation.navigate('AddPlaces')}}
+                        onPress={() => {navigation.navigate('AddPlace')}}
                       />
                     </View>
                     <View style={styles.btn}>
