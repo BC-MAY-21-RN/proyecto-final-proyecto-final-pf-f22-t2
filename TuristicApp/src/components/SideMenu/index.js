@@ -1,13 +1,16 @@
+
 import React, {useState, useContext} from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, TouchableOpacity } from 'react-native';
 import { Drawer } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from 'react-native-paper';
 import { styles } from './styles';
 import { AuthContext } from '../../library/utils/auth'
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+import { MyText } from '../MyText';
 
-const SideMenu = () => {
+const SideMenu = ({user}) => {
   const [active, setActive] = useState('');
   const navigation = useNavigation(); 
   const {signOut} = useContext(AuthContext);
@@ -15,17 +18,29 @@ const SideMenu = () => {
   return (
     <View style={styles.sidemenu}>
       <SafeAreaView>
+        {user?
+        <TouchableOpacity style={styles.avatar} onPress={() => {navigation.navigate('Profile',{user})}}>
+          <Avatar.Image size={132} source={{uri:user.dataUser.photo[0]}} 
+          />
+          <Text>{user.dataUser.firstName}</Text>
+          <Text>{user.dataUser.email}</Text>
+        </TouchableOpacity>
+        :
         <View style={styles.avatar}>
-          <Avatar.Image size={132} source={require('../../assets/avatar.png')} />
-          <Text>Johanna Guide</Text>
-          <Text>johanna@guia.com</Text>
-        </View>
+          <Avatar.Image size={132} source={require('../../assets/logo-SignIn.png')} 
+          />
+          <Text>{auth()._user.displayName}</Text>
+          <Text>{auth()._user.email}</Text>
+          <TouchableOpacity onPress={() => {navigation.navigate('Home')}}>
+            <MyText bold color={'#f75f6a'}>Complete profile</MyText>
+          </TouchableOpacity>
+        </View>}
         <Drawer.Section style={styles.listItems}>
           <View>
             <Drawer.Item 
               icon= {"home"} 
               label="Home"
-              // active={active === 'one'}
+              active={active === 'one'}
               onPress={() => navigation.navigate('Home')}
             />
             <Avatar.Icon size={50} icon="chevron-right" backgroundColor="transparent" color="#f75f6a"  style={styles.homeIcon}/>

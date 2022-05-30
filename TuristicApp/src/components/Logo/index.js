@@ -4,7 +4,7 @@ import { ContainerLogo } from './styled'
 
 export const Logo = ( {color, size} ) => {
   return (
-    <ContainerLogo color={color}>
+    <ContainerLogo color={color} size={size}>
       <Image
         style={{width: size, height: size,}}
         source={require('../../assets/logo-SignIn.png')}

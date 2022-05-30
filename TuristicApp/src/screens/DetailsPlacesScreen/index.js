@@ -8,7 +8,7 @@ import { Score } from '../../components/Score';
 
 const DetailsPlaceScreen = ({ route }) => {
   const { item } = route.params;
-  const urlsImages = item.place.images
+  const urlsImages = item.place.images;
 
   const renderItem = ({ item }) => {
     return (
@@ -31,7 +31,7 @@ const DetailsPlaceScreen = ({ route }) => {
         <Location>
           <Icon name={"location"} size={25} color={"black"}/>
           <MyText bold >{item.place.city} ({item.place.state} - {item.place.country})</MyText>
-          <Score likes={'20 k'} dislikes={'20'}/> 
+          <Score item={item}/> 
         </Location>
         <MyText>{item.place.description}</MyText>
       </ContainerContent>

@@ -49,14 +49,21 @@ export const AuthProvider = ({ children }) => {
         }
         console.error(err);
     });
-}
+  }
+
+  const getUser = (email) => {
+    return firestore()
+      .collection('users')
+      .where('dataUser.email', '==', email)
+      .get()
+  };
 
   const signOut = () => {
     auth()
       .signOut()
       .then(() => {
         ToastAndroid.show('Signed Out', ToastAndroid.SHORT);
-      });
+    });
   };
 
   return (
@@ -66,6 +73,7 @@ export const AuthProvider = ({ children }) => {
         signOut,
         infoUser,
         signUp,
+        getUser,
         errorEmail,
         setErrorEmail,
         errorPassword,

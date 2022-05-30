@@ -11,15 +11,6 @@ export const Places = ({ navigation, allPlaces, }) => {
  
   return (
     <Container> 
-      <Pressable onPress={() => {navigation.navigate('AddPlace')}}>
-        <Text>ADD Places</Text>
-      </Pressable>
-      <Pressable onPress={() => {navigation.navigate('AddFood')}}>
-        <Text>ADD Food</Text>
-      </Pressable>
-      <Pressable onPress={() => {navigation.navigate('AddEvent')}}>
-        <Text>ADD Event</Text>
-      </Pressable>
       <FlatList
         data={allPlaces}
         renderItem={renderItem}
